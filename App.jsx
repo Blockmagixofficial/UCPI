@@ -23,7 +23,7 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-import HomeScreen from './src/home';
+import HomeScreen from './src/screens/home';
 
 function Section({ children, title }) {
   const isDarkMode = useColorScheme() === 'dark';
