@@ -23,7 +23,9 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-import HomeScreen from './src/screens/home';
+import HomeScreen from './src/home';
+import Onboarding from './src/screens/home/Onboarding';
+import OtpScreen from './src/screens/home/OtpScreen';
 
 function Section({ children, title }) {
   const isDarkMode = useColorScheme() === 'dark';
@@ -51,8 +53,9 @@ function App() {
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}
       >
-       
-       <HomeScreen />
+       <Onboarding />
+      {/* <OtpScreen /> */}
+     
        
       </ScrollView>
     </SafeAreaView>
