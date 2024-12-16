@@ -89,7 +89,7 @@ const LoginScreen = ({ navigation }) => {
             <TextInput
               label="Phone Number"
               mode="flat"
-              style={styles.input}
+              style={styles.input_mob}
               keyboardType="numeric"
               value={phoneNumber}
               onChangeText={(text) => setPhoneNumber(text)}
@@ -107,29 +107,32 @@ const LoginScreen = ({ navigation }) => {
         </View>
       ) : (
         /* Email Login */
-        <View style={styles.form}>
-          <TextInput
-            label="Email ID"
-            mode="flat"
-            left={<TextInput.Icon name="at" />}
-            style={styles.input}
-          />
-          <TextInput
-            label="Password"
-            mode="flat"
-            secureTextEntry
-            left={<TextInput.Icon name="lock-outline" />}
-            style={styles.input}
-          />
-          <Button
-            mode="contained"
-            onPress={() => {}}
-            contentStyle={styles.buttonContent}
-            style={styles.button}
-          >
-            Login
-          </Button>
-        </View>
+        /* Email Login */
+<View style={styles.form}>
+  <TextInput
+    label="Email ID"
+    mode="flat"
+    left={<TextInput.Icon name="at" />}
+    style={styles.input}
+    keyboardType="email-address"
+  />
+  <TextInput
+    label="Password"
+    mode="flat"
+    secureTextEntry
+    left={<TextInput.Icon name="lock-outline" />}
+    style={styles.input}
+  />
+  <Button
+    mode="contained"
+    onPress={() => {}}
+    contentStyle={styles.buttonContent}
+    style={[styles.button, { marginTop: 16 }]} // Add margin to separate the button
+  >
+    Login
+  </Button>
+</View>
+
       )}
 
       {/* OR Separator */}
@@ -203,7 +206,9 @@ const styles = StyleSheet.create({
     color: '#000',
   },
   form: {
-    marginBottom: 24,
+    // marginBottom: 24,
+    // paddingTop:24,
+    // paddingBottom:24
   },
   row: {
     flexDirection: 'row',
@@ -234,13 +239,19 @@ const styles = StyleSheet.create({
     marginTop: -4,
   },
   input: {
-    flex: 2,
+    // flex: 1,
     backgroundColor: 'transparent',
+    // marginBottom: 12, // Add spacing between inputs
+  },
+  input_mob:{
+flex: 1,
+backgroundColor: 'transparent',
   },
   button: {
     borderRadius: 24,
     backgroundColor: '#1F41BB',
   },
+  
   buttonContent: {
     paddingVertical: 8,
   },
