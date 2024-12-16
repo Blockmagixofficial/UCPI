@@ -101,7 +101,7 @@ const Onboarding = ({ navigation }) => {
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.createAccountButton}
-            onPress={() => navigation?.navigate('CreateAccount')}
+            onPress={() => navigation?.navigate('Signup')}
           >
             <Text style={styles.createAccountButtonText}>
               Create an account
