@@ -6,8 +6,8 @@ import india from "../../assets/flag.png";
 import usa from "../../assets/united-states.png";
 
 const LoginScreen = ({ navigation }) => {
-  const [tab, setTab] = useState('phone'); // 'phone' or 'email'
-  const [selectedCountry, setSelectedCountry] = useState('+91'); // Default country
+  const [tab, setTab] = useState('phone');
+  const [selectedCountry, setSelectedCountry] = useState('+91');
   const [phoneNumber, setPhoneNumber] = useState('');
 
   const countryData = [
@@ -25,7 +25,6 @@ const LoginScreen = ({ navigation }) => {
 
   const handleRequestOtp = () => {
     if (phoneNumber.length >= 10) {
-      // Navigate to OTP Screen
       navigation.navigate('otp', { phoneNumber, selectedCountry });
     } else {
       alert('Please enter a valid phone number');
@@ -34,11 +33,8 @@ const LoginScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      {/* Header */}
       <Text style={styles.title}>Login Account</Text>
       <Text style={styles.subtitle}>Hello, welcome back to our account</Text>
-
-      {/* Tabs */}
       <Surface style={styles.tabContainer}>
         <TouchableOpacity
           style={[styles.tabButton, tab === 'phone' && styles.activeTab]}
@@ -58,48 +54,38 @@ const LoginScreen = ({ navigation }) => {
         </TouchableOpacity>
       </Surface>
 
-      {/* Phone Number Login */}
       {tab === 'phone' ? (
         <View style={styles.form}>
-          {/* Dropdown Row with Flag */}
           <View style={styles.phoneRow}>
-  {/* Rounded Flag */}
-  <Image
-    source={countryData.find((c) => c.value === selectedCountry)?.flag}
-    style={styles.roundedFlag}
-    resizeMode="cover"
-  />
-
-  {/* Picker Dropdown */}
-  <View style={styles.pickerContainer}>
-    <Picker
-      selectedValue={selectedCountry}
-      onValueChange={(value) => setSelectedCountry(value)}
-      style={styles.picker}
-      mode="dropdown" // Dropdown expands to fit content
-    >
-      {countryData.map((country) => (
-        <Picker.Item
-          key={country.value}
-          label={country.label} // Display full label when expanded
-          value={country.value}
-        />
-      ))}
-    </Picker>
-  </View>
-
-  {/* Phone Number Input */}
-  <TextInput
-    placeholder="Phone Number"
-    style={styles.phoneInput}
-    keyboardType="numeric"
-    value={phoneNumber}
-    onChangeText={(text) => setPhoneNumber(text)}
-  />
-</View>
-
-
-
+            <Image
+              source={countryData.find((c) => c.value === selectedCountry)?.flag}
+              style={styles.roundedFlag}
+              resizeMode="cover"
+            />
+            <View style={styles.pickerContainer}>
+              <Picker
+                selectedValue={selectedCountry}
+                onValueChange={(value) => setSelectedCountry(value)}
+                style={styles.picker}
+                mode="dropdown"
+              >
+                {countryData.map((country) => (
+                  <Picker.Item
+                    key={country.value}
+                    label={country.label}
+                    value={country.value}
+                  />
+                ))}
+              </Picker>
+            </View>
+            <TextInput
+              placeholder="Phone Number"
+              style={styles.phoneInput}
+              keyboardType="numeric"
+              value={phoneNumber}
+              onChangeText={(text) => setPhoneNumber(text)}
+            />
+          </View>
           <Button
             mode="contained"
             onPress={handleRequestOtp}
@@ -110,58 +96,63 @@ const LoginScreen = ({ navigation }) => {
           </Button>
         </View>
       ) : (
-        /* Email Login */
-        /* Email Login */
-<View style={styles.form}>
-  <TextInput
-    label="Email ID"
-    mode="flat"
-    left={<TextInput.Icon name="at" />}
-    style={styles.input}
-    keyboardType="email-address"
-  />
-  <TextInput
-    label="Password"
-    mode="flat"
-    secureTextEntry
-    left={<TextInput.Icon name="lock-outline" />}
-    style={styles.input}
-  />
-  <Button
-    mode="contained"
-    onPress={() => {}}
-    contentStyle={styles.buttonContent}
-    style={[styles.button, { marginTop: 16 }]} // Add margin to separate the button
-  >
-    Login
-  </Button>
-</View>
-
+        <View style={styles.form}>
+          <View style={styles.inputWrapper}>
+            <Image
+              source={require('../../assets/icons/mail.png')}
+              style={styles.icon}
+            />
+            <TextInput
+              placeholder="Email ID"
+              mode="flat"
+              style={styles.input}
+              keyboardType="email-address"
+            />
+          </View>
+          <View style={styles.inputWrapper}>
+            <Image
+              source={require('../../assets/icons/lock.png')}
+              style={styles.icon}
+            />
+            <TextInput
+              placeholder="Password"
+              mode="flat"
+              secureTextEntry
+              style={styles.input}
+            />
+          </View>
+          <Button
+            mode="contained"
+            onPress={() => {}}
+            contentStyle={styles.buttonContent}
+            style={[styles.button, { marginTop: 16 }]}
+          >
+            Login
+          </Button>
+        </View>
       )}
 
-      {/* OR Separator */}
       <View style={styles.orContainer}>
         <View style={styles.line} />
         <Text style={styles.orText}>OR</Text>
         <View style={styles.line} />
       </View>
 
-      {/* Google Login Button */}
       <TouchableOpacity style={styles.googleButton}>
         <Image
           source={{
             uri: 'https://cdn1.iconfinder.com/data/icons/google-s-logo/150/Google_Icons-09-1024.png',
           }}
           style={styles.googleIcon}
-          
-
         />
         <Text style={styles.googleText}>Login with Google</Text>
       </TouchableOpacity>
 
-      {/* Footer */}
       <Text style={styles.footerText}>
-        Not Registered yet? <Text style={styles.footerLink}  onPress={() => navigation?.navigate('Signup')}> Create an Account</Text>
+        Not Registered yet?{' '}
+        <Text style={styles.footerLink} onPress={() => navigation?.navigate('Signup')}>
+          Create an Account
+        </Text>
       </Text>
     </View>
   );
@@ -175,42 +166,36 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   phoneRow: {
-    flexDirection: 'row', // Align items horizontally
-    alignItems: 'center', // Center vertically
+    flexDirection: 'row',
+    alignItems: 'center',
     marginBottom: 16,
   },
-  
   roundedFlag: {
-    width: 30,             // Set width
-    height: 30,            // Set height
-    borderRadius: 15,      // Half of width/height for a perfect circle
-    overflow: 'hidden',    // Ensures the image stays within the circular shape
-    backgroundColor: '#ddd', // Optional: fallback background color
-    marginRight: 8,        // Space between flag and picker
+    width: 30,
+    height: 30,
+    borderRadius: 15,
+    overflow: 'hidden',
+    backgroundColor: '#ddd',
+    marginRight: 8,
   },
-  
-  
   pickerContainer: {
     marginTop: 10,
-    width: 30,          // Compact default width for picker
+    width: 30,
     justifyContent: 'center',
-    marginRight: 12,    // Space between picker and input
+    marginRight: 12,
   },
-  
   picker: {
-    width: '10%',      // Allow Picker to take full width inside its container
+    width: '10%',
     color: '#333',
     fontSize: 14,
   },
-  
   phoneInput: {
-    flex: 1,            // Take remaining space
+    flex: 1,
     backgroundColor: 'transparent',
     fontSize: 16,
     height: 50,
+    // borderBottomColor:'transparent'
   },
-  
-  
   title: {
     fontSize: 24,
     fontWeight: 'bold',
@@ -248,53 +233,32 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#000',
   },
-  form: {
-    // marginBottom: 24,
-    // paddingTop:24,
-    // paddingBottom:24
-  },
-  row: {
+  form: {},
+  inputWrapper: {
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 16,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ddd',
+    paddingVertical: 4,
   },
-  flagDropdown: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 25,
-    height: 50,
-    paddingHorizontal: 12,
-    backgroundColor: '#fff',
+  icon: {
+    width: 24,
+    height: 24,
     marginRight: 8,
-  },
-  flagIcon: {
-    width: 28,
-    height: 20,
     resizeMode: 'contain',
-    marginRight: 12,
-  },
-  picker: {
-    flex: 1,
-    color: '#333',
-    height: 50,
-    marginTop: -4,
   },
   input: {
-    // flex: 1,
+    flex: 1,
     backgroundColor: 'transparent',
-    // marginBottom: 12, // Add spacing between inputs
-  },
-  input_mob:{
-flex: 1,
-backgroundColor: 'transparent',
+    fontSize: 16,
+    height: 50,
+
   },
   button: {
     borderRadius: 24,
     backgroundColor: '#1F41BB',
   },
-  
   buttonContent: {
     paddingVertical: 8,
   },

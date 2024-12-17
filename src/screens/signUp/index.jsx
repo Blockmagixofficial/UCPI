@@ -30,6 +30,22 @@ const RegisterScreen = ({ navigation }) => {
     }
   };
 
+  const renderInputWithIcon = (label, value, onChangeText, error, iconSource, isPassword = false, keyboardType = 'default') => (
+    <View style={styles.inputWrapper}>
+      <Image source={iconSource} style={styles.icon} />
+      <TextInput
+        label={label}
+        mode="flat"
+        error={error}
+        value={value}
+        secureTextEntry={isPassword}
+        onChangeText={onChangeText}
+        keyboardType={keyboardType}
+        style={styles.input}
+      />
+    </View>
+  );
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Create Account</Text>
@@ -37,68 +53,37 @@ const RegisterScreen = ({ navigation }) => {
         Create an account to experience seamless cross-border payments
       </Text>
       <View style={styles.inputContainer}>
-        <TextInput
-          label="Name"
-          mode="flat"
-          error={errors.name}
-          value={form.name}
-          onChangeText={(text) => setForm({ ...form, name: text })}
-          left={
-            <TextInput.Icon
-              name={() => (
-                <Image source={require('../../assets/icons/user.png')} style={styles.icon} />
-              )}
-            />
-          }
-          style={styles.input}
-        />
-        <TextInput
-          label="Email"
-          mode="flat"
-          error={errors.email}
-          value={form.email}
-          onChangeText={(text) => setForm({ ...form, email: text })}
-          left={
-            <TextInput.Icon
-              name={() => (
-                <Image source={require('../../assets/icons/mail.png')} style={styles.icon} />
-              )}
-            />
-          }
-          style={styles.input}
-        />
-        <TextInput
-          label="Age"
-          mode="flat"
-          error={errors.age}
-          value={form.age}
-          onChangeText={(text) => setForm({ ...form, age: text })}
-          keyboardType="numeric"
-          left={
-            <TextInput.Icon
-              name={() => (
-                <Image source={require('../../assets/icons/time.png')} style={styles.icon} />
-              )}
-            />
-          }
-          style={styles.input}
-        />
-        <TextInput
-          label="Password"
-          mode="flat"
-          error={errors.password}
-          value={form.password}
-          secureTextEntry
-          onChangeText={(text) => setForm({ ...form, password: text })}
-          left={
-            <TextInput.Icon
-              name={() => (
-                <Image source={require('../../assets/icons/lock.png')} style={styles.icon} />
-              )}
-            />
-          }
-          style={styles.input}
-        />
+        {renderInputWithIcon(
+          'Name',
+          form.name,
+          (text) => setForm({ ...form, name: text }),
+          errors.name,
+          require('../../assets/icons/user.png')
+        )}
+        {renderInputWithIcon(
+          'Email',
+          form.email,
+          (text) => setForm({ ...form, email: text }),
+          errors.email,
+          require('../../assets/icons/mail.png')
+        )}
+        {renderInputWithIcon(
+          'Age',
+          form.age,
+          (text) => setForm({ ...form, age: text }),
+          errors.age,
+          require('../../assets/icons/time.png'),
+          false,
+          'numeric'
+        )}
+        {renderInputWithIcon(
+          'Password',
+          form.password,
+          (text) => setForm({ ...form, password: text }),
+          errors.password,
+          require('../../assets/icons/lock.png'),
+          true
+        )}
       </View>
       <Button
         mode="contained"
@@ -154,13 +139,20 @@ const styles = StyleSheet.create({
   inputContainer: {
     marginBottom: 16,
   },
-  input: {
+  inputWrapper: {
+    flexDirection: 'row',
+    alignItems: 'center',
     marginBottom: 16,
+  },
+  input: {
+    flex: 1,
     backgroundColor: 'transparent',
   },
   icon: {
     width: 24,
     height: 24,
+    marginLeft: 1,
+    marginTop:5,
     resizeMode: 'contain',
   },
   registerButton: {
