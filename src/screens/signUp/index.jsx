@@ -1,76 +1,118 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, StyleSheet, Text, TouchableOpacity, Image } from 'react-native';
 import { TextInput, Button } from 'react-native-paper';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import icon from "../../assets/ic_round-alternate-email.png"
-const RegisterScreen = ({ navigation}) => {
+
+const RegisterScreen = ({ navigation }) => {
+  const [form, setForm] = useState({
+    name: '',
+    email: '',
+    age: '',
+    password: '',
+  });
+
+  const [errors, setErrors] = useState({
+    name: false,
+    email: false,
+    age: false,
+    password: false,
+  });
+
+  const handleRegister = () => {
+    const newErrors = {
+      name: !form.name,
+      email: !form.email,
+      age: !form.age,
+      password: !form.password,
+    };
+    setErrors(newErrors);
+    if (!Object.values(newErrors).includes(true)) {
+      console.log('Form Submitted:', form);
+    }
+  };
+
   return (
     <View style={styles.container}>
-      {/* Header */}
       <Text style={styles.title}>Create Account</Text>
       <Text style={styles.subtitle}>
-        Create a account to experience a seamless cross border payments
+        Create an account to experience seamless cross-border payments
       </Text>
-
-      {/* Input Fields */}
       <View style={styles.inputContainer}>
         <TextInput
           label="Name"
           mode="flat"
-          left={<TextInput.Icon name="account" />}
+          error={errors.name}
+          value={form.name}
+          onChangeText={(text) => setForm({ ...form, name: text })}
+          left={
+            <TextInput.Icon
+              name={() => (
+                <Image source={require('../../assets/icons/user.png')} style={styles.icon} />
+              )}
+            />
+          }
           style={styles.input}
         />
         <TextInput
           label="Email"
           mode="flat"
-          left={<TextInput.Icon name="email-outline" />}
+          error={errors.email}
+          value={form.email}
+          onChangeText={(text) => setForm({ ...form, email: text })}
+          left={
+            <TextInput.Icon
+              name={() => (
+                <Image source={require('../../assets/icons/mail.png')} style={styles.icon} />
+              )}
+            />
+          }
           style={styles.input}
         />
         <TextInput
           label="Age"
           mode="flat"
-          left={<TextInput.Icon name="calendar" />}
+          error={errors.age}
+          value={form.age}
+          onChangeText={(text) => setForm({ ...form, age: text })}
+          keyboardType="numeric"
+          left={
+            <TextInput.Icon
+              name={() => (
+                <Image source={require('../../assets/icons/time.png')} style={styles.icon} />
+              )}
+            />
+          }
           style={styles.input}
         />
         <TextInput
-  label="Password"
-  mode="flat"
-  secureTextEntry
-  left={
-    <TextInput.Icon
-      name={() => (
-        <Image
-          source={icon}
-          style={{
-            width: 30,
-            height: 30,
-          }}
+          label="Password"
+          mode="flat"
+          error={errors.password}
+          value={form.password}
+          secureTextEntry
+          onChangeText={(text) => setForm({ ...form, password: text })}
+          left={
+            <TextInput.Icon
+              name={() => (
+                <Image source={require('../../assets/icons/lock.png')} style={styles.icon} />
+              )}
+            />
+          }
+          style={styles.input}
         />
-      )}
-    />
-  }
-  style={styles.input}
-/>
       </View>
-
-      {/* Register Button */}
       <Button
         mode="contained"
-        onPress={() => {}}
+        onPress={handleRegister}
         contentStyle={styles.registerButtonContent}
         style={styles.registerButton}
       >
         Register
       </Button>
-
-      {/* OR Separator */}
       <View style={styles.orContainer}>
         <View style={styles.line} />
         <Text style={styles.orText}>OR</Text>
         <View style={styles.line} />
       </View>
-
-      {/* Google Login Button */}
       <TouchableOpacity style={styles.googleButton}>
         <Image
           source={{
@@ -78,13 +120,13 @@ const RegisterScreen = ({ navigation}) => {
           }}
           style={styles.googleIcon}
         />
-        <Text style={styles.googleText}>Login with Google</Text>
+        <Text style={styles.googleText}>Register with Google</Text>
       </TouchableOpacity>
-
-      {/* Footer */}
       <Text style={styles.footerText}>
         Already have an account?{' '}
-        <Text style={styles.footerLink}       onPress={() => navigation?.navigate('Login')}>Login</Text>
+        <Text style={styles.footerLink} onPress={() => navigation?.navigate('Login')}>
+          Login
+        </Text>
       </Text>
     </View>
   );
@@ -115,6 +157,11 @@ const styles = StyleSheet.create({
   input: {
     marginBottom: 16,
     backgroundColor: 'transparent',
+  },
+  icon: {
+    width: 24,
+    height: 24,
+    resizeMode: 'contain',
   },
   registerButton: {
     borderRadius: 14,

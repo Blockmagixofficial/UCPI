@@ -62,39 +62,43 @@ const LoginScreen = ({ navigation }) => {
       {tab === 'phone' ? (
         <View style={styles.form}>
           {/* Dropdown Row with Flag */}
-          <View style={styles.row}>
-            <View style={styles.flagDropdown}>
-              <Image
-                source={countryData.find((c) => c.value === selectedCountry)?.flag}
-                style={styles.flagIcon}
-              />
-              <Picker
-                selectedValue={selectedCountry}
-                onValueChange={(value) => setSelectedCountry(value)}
-                style={styles.picker}
-                dropdownIconColor="#aaa"
-                mode="dropdown"
-              >
-                {countryData.map((country) => (
-                  <Picker.Item
-                    key={country.value}
-                    label={country.label}
-                    value={country.value}
-                  />
-                ))}
-              </Picker>
-            </View>
+          <View style={styles.phoneRow}>
+  {/* Rounded Flag */}
+  <Image
+    source={countryData.find((c) => c.value === selectedCountry)?.flag}
+    style={styles.roundedFlag}
+    resizeMode="cover"
+  />
 
-            {/* Phone Number Input */}
-            <TextInput
-              label="Phone Number"
-              mode="flat"
-              style={styles.input_mob}
-              keyboardType="numeric"
-              value={phoneNumber}
-              onChangeText={(text) => setPhoneNumber(text)}
-            />
-          </View>
+  {/* Picker Dropdown */}
+  <View style={styles.pickerContainer}>
+    <Picker
+      selectedValue={selectedCountry}
+      onValueChange={(value) => setSelectedCountry(value)}
+      style={styles.picker}
+      mode="dropdown" // Dropdown expands to fit content
+    >
+      {countryData.map((country) => (
+        <Picker.Item
+          key={country.value}
+          label={country.label} // Display full label when expanded
+          value={country.value}
+        />
+      ))}
+    </Picker>
+  </View>
+
+  {/* Phone Number Input */}
+  <TextInput
+    placeholder="Phone Number"
+    style={styles.phoneInput}
+    keyboardType="numeric"
+    value={phoneNumber}
+    onChangeText={(text) => setPhoneNumber(text)}
+  />
+</View>
+
+
 
           <Button
             mode="contained"
@@ -149,6 +153,8 @@ const LoginScreen = ({ navigation }) => {
             uri: 'https://cdn1.iconfinder.com/data/icons/google-s-logo/150/Google_Icons-09-1024.png',
           }}
           style={styles.googleIcon}
+          
+
         />
         <Text style={styles.googleText}>Login with Google</Text>
       </TouchableOpacity>
@@ -168,6 +174,43 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     justifyContent: 'center',
   },
+  phoneRow: {
+    flexDirection: 'row', // Align items horizontally
+    alignItems: 'center', // Center vertically
+    marginBottom: 16,
+  },
+  
+  roundedFlag: {
+    width: 30,             // Set width
+    height: 30,            // Set height
+    borderRadius: 15,      // Half of width/height for a perfect circle
+    overflow: 'hidden',    // Ensures the image stays within the circular shape
+    backgroundColor: '#ddd', // Optional: fallback background color
+    marginRight: 8,        // Space between flag and picker
+  },
+  
+  
+  pickerContainer: {
+    marginTop: 10,
+    width: 30,          // Compact default width for picker
+    justifyContent: 'center',
+    marginRight: 12,    // Space between picker and input
+  },
+  
+  picker: {
+    width: '10%',      // Allow Picker to take full width inside its container
+    color: '#333',
+    fontSize: 14,
+  },
+  
+  phoneInput: {
+    flex: 1,            // Take remaining space
+    backgroundColor: 'transparent',
+    fontSize: 16,
+    height: 50,
+  },
+  
+  
   title: {
     fontSize: 24,
     fontWeight: 'bold',
