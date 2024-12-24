@@ -102,6 +102,7 @@ import Onboarding from './src/screens/home/Onboarding';
 import LoginScreen from './src/screens/login';
 import RegisterScreen from './src/screens/signUp';
 import OtpScreen from './src/screens/home/OtpScreen';
+import AddBankAccountScreen from './src/screens/AddBankAccount';
 
 const Stack = createNativeStackNavigator();
 
@@ -120,6 +121,7 @@ const App = () => {
         <Stack.Screen name="Otp" component={OtpScreen} />
       </Stack.Navigator>
     </NavigationContainer>
+
   );
 };
 
