@@ -103,24 +103,28 @@ import LoginScreen from './src/screens/login';
 import RegisterScreen from './src/screens/signUp';
 import OtpScreen from './src/screens/home/OtpScreen';
 import AddBankAccountScreen from './src/screens/AddBankAccount';
+import { TransferListScreen } from './src/screens/TransferListScreen';
+import DashboardScreen from './src/screens/Dashboard';
 
 const Stack = createNativeStackNavigator();
 
 const App = () => {
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="Onboarding"
-          component={Onboarding}
-          options={{title: 'Welcome'}}
-        />
+    // <NavigationContainer>
+    //   <Stack.Navigator>
+    //     <Stack.Screen
+    //       name="Onboarding"
+    //       component={Onboarding}
+    //       options={{title: 'Welcome'}}
+    //     />
      
-        <Stack.Screen name="Login" component={LoginScreen} />
-        <Stack.Screen name="Signup" component={RegisterScreen} />
-        <Stack.Screen name="Otp" component={OtpScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    //     <Stack.Screen name="Login" component={LoginScreen} />
+    //     <Stack.Screen name="Signup" component={RegisterScreen} />
+    //     <Stack.Screen name="Otp" component={OtpScreen} />
+    //   </Stack.Navigator>
+    // </NavigationContainer>
+
+    <DashboardScreen />
 
   );
 };

@@ -4,6 +4,8 @@ import { TextInput, Button, Surface } from 'react-native-paper';
 import { Picker } from '@react-native-picker/picker';
 import india from "../../assets/flag.png";
 import usa from "../../assets/united-states.png";
+import { OtplessModule } from "otpless-react-native";
+
 
 const LoginScreen = ({ navigation }) => {
   const [tab, setTab] = useState('phone');
@@ -30,6 +32,10 @@ const LoginScreen = ({ navigation }) => {
       alert('Please enter a valid phone number');
     }
   };
+
+
+
+
 
   return (
     <View style={styles.container}>
