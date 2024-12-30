@@ -9,6 +9,7 @@ import RegisterScreen from './src/screens/signUp';
 import { TransferListScreen } from './src/screens/TransferListScreen';
 import AddBankAccountScreen from './src/screens/AddBankAccount';
 import DashboardScreen from './src/screens/Dashboard';
+import UCPIEnter from './src/screens/EnterUCPI';
 
 const Tab = createBottomTabNavigator();
 
@@ -59,7 +60,7 @@ export default function App() {
         />
         <Tab.Screen
           name="Login"
-          component={LoginScreen}
+          component={UCPIEnter}
           options={{
             title: 'Login',
           }}

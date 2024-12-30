@@ -1,27 +1,25 @@
-import React, { useState } from 'react';
-import { View, StyleSheet, Text, TouchableOpacity, Image } from 'react-native';
-import { TextInput, Button, Surface } from 'react-native-paper';
-import { Picker } from '@react-native-picker/picker';
-import india from "../../assets/flag.png";
-import usa from "../../assets/united-states.png";
-import { OtplessModule } from "otpless-react-native";
-
+import React, {useState} from 'react';
+import {View, StyleSheet, Text, TouchableOpacity, Image} from 'react-native';
+import {TextInput, Button, Surface} from 'react-native-paper';
+import {Picker} from '@react-native-picker/picker';
 
 const LoginScreen = ({ navigation }) => {
   const [tab, setTab] = useState('phone');
   const [selectedCountry, setSelectedCountry] = useState('+91');
   const [phoneNumber, setPhoneNumber] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const countryData = [
     {
       label: 'India (+91)',
       value: '+91',
-      flag: india,
+      flag: require('../../assets/flag.png'),
     },
     {
       label: 'USA (+1)',
       value: '+1',
-      flag: usa,
+      flag: require('../../assets/united-states.png'),
     },
   ];
 
@@ -44,17 +42,17 @@ const LoginScreen = ({ navigation }) => {
       <Surface style={styles.tabContainer}>
         <TouchableOpacity
           style={[styles.tabButton, tab === 'phone' && styles.activeTab]}
-          onPress={() => setTab('phone')}
-        >
-          <Text style={[styles.tabText, tab === 'phone' && styles.activeTabText]}>
+          onPress={() => setTab('phone')}>
+          <Text
+            style={[styles.tabText, tab === 'phone' && styles.activeTabText]}>
             Phone Number
           </Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={[styles.tabButton, tab === 'email' && styles.activeTab]}
-          onPress={() => setTab('email')}
-        >
-          <Text style={[styles.tabText, tab === 'email' && styles.activeTabText]}>
+          onPress={() => setTab('email')}>
+          <Text
+            style={[styles.tabText, tab === 'email' && styles.activeTabText]}>
             Email
           </Text>
         </TouchableOpacity>
@@ -96,8 +94,7 @@ const LoginScreen = ({ navigation }) => {
             mode="contained"
             onPress={handleRequestOtp}
             contentStyle={styles.buttonContent}
-            style={styles.button}
-          >
+            style={styles.button}>
             Request OTP
           </Button>
         </View>
@@ -170,6 +167,18 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     backgroundColor: '#fff',
     justifyContent: 'center',
+  },
+  inputWrapper: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 16,
+  },
+  icon: {
+    width: 24,
+    height: 24,
+    marginLeft: 1,
+    marginTop: 5,
+    resizeMode: 'contain',
   },
   phoneRow: {
     flexDirection: 'row',
