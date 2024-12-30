@@ -103,7 +103,11 @@ import LoginScreen from './src/screens/login';
 import RegisterScreen from './src/screens/signUp';
 import OtpScreen from './src/screens/home/OtpScreen';
 import AddBankAccountScreen from './src/screens/AddBankAccount';
-
+import TransferScreen from './src/screens/Transferto';
+import RequestScreen from './src/screens/RequestTo';
+import UCPIEnter from './src/screens/EnterUCPI';
+import PaySuccess from './src/screens/PaySuccess';
+import ScheduleTransaction from './src/screens/Schedule';
 const Stack = createNativeStackNavigator();
 
 const App = () => {
@@ -112,7 +116,7 @@ const App = () => {
       <Stack.Navigator>
         <Stack.Screen
           name="Onboarding"
-          component={Onboarding}
+          component={ScheduleTransaction}
           options={{title: 'Welcome'}}
         />
      
