@@ -1,133 +1,131 @@
-// /**
-//  * Sample React Native App
-//  * https://github.com/facebook/react-native
-//  *
-//  * @format
-//  */
-
-// import React from 'react';
-// import {
-//   SafeAreaView,
-//   ScrollView,
-//   StatusBar,
-//   StyleSheet,
-//   Text,
-//   useColorScheme,
-//   View,
-// } from 'react-native';
-
-// import {
-//   Colors,
-//   DebugInstructions,
-//   Header,
-//   LearnMoreLinks,
-//   ReloadInstructions,
-// } from 'react-native/Libraries/NewAppScreen';
-
-// import Onboarding from './src/screens/home/Onboarding';
-// import OtpScreen from './src/screens/home/OtpScreen';
-
-// import HomeScreen from './src/screens/home';
-// import RegisterScreen from './src/screens/signUp';
-// import LoginScreen from './src/screens/login';
-// function Section({ children, title }) {
-//   const isDarkMode = useColorScheme() === 'dark';
-//   return (
-//     <View style={styles.sectionContainer}>
-//    <Text>HSKASHDKNsfdk,nF,</Text>
-//     </View>
-//   );
-// }
-
-// function App() {
-//   const isDarkMode = useColorScheme() === 'dark';
-
-//   const backgroundStyle = {
-//     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-//   };
-
-//   return (
-//     <SafeAreaView style={backgroundStyle}>
-//       <StatusBar
-//         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-//         backgroundColor={backgroundStyle.backgroundColor}
-//       />
-//       <ScrollView
-//         contentInsetAdjustmentBehavior="automatic"
-//         style={backgroundStyle}
-//       >
-//        <Onboarding />
-//       {/* <OtpScreen /> */}
-     
-       
-       
-//        {/* <HomeScreen /> */}
-//        {/* <RegisterScreen /> */}
-//        <LoginScreen />
-//       </ScrollView>
-//     </SafeAreaView>
-//   );
-// }
-
-// const styles = StyleSheet.create({
-//   sectionContainer: {
-//     marginTop: 32,
-//     paddingHorizontal: 24,
-//   },
-//   sectionTitle: {
-//     fontSize: 24,
-//     fontWeight: '600',
-//   },
-//   sectionDescription: {
-//     marginTop: 8,
-//     fontSize: 18,
-//     fontWeight: '400',
-//   },
-//   highlight: {
-//     fontWeight: '700',
-//   },
-// });
-
-// export default App;
- 
-
-
-
-
-
-import * as React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import React from 'react';
+import { View, StyleSheet, TouchableOpacity, Text } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import Onboarding from './src/screens/home/Onboarding';
 import LoginScreen from './src/screens/login';
 import RegisterScreen from './src/screens/signUp';
-import OtpScreen from './src/screens/home/OtpScreen';
-import AddBankAccountScreen from './src/screens/AddBankAccount';
 import { TransferListScreen } from './src/screens/TransferListScreen';
+import AddBankAccountScreen from './src/screens/AddBankAccount';
 import DashboardScreen from './src/screens/Dashboard';
 
-const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 
-const App = () => {
+const CustomTabBarButton = ({ children, onPress }) => (
+  <TouchableOpacity
+    style={styles.customButtonContainer}
+    onPress={onPress}
+    activeOpacity={0.8}
+  >
+    <View style={styles.customButton}>
+      {children}
+    </View>
+  </TouchableOpacity>
+);
+
+export default function App() {
   return (
-    // <NavigationContainer>
-    //   <Stack.Navigator>
-    //     <Stack.Screen
-    //       name="Onboarding"
-    //       component={Onboarding}
-    //       options={{title: 'Welcome'}}
-    //     />
-     
-    //     <Stack.Screen name="Login" component={LoginScreen} />
-    //     <Stack.Screen name="Signup" component={RegisterScreen} />
-    //     <Stack.Screen name="Otp" component={OtpScreen} />
-    //   </Stack.Navigator>
-    // </NavigationContainer>
+    <NavigationContainer>
+      <Tab.Navigator
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({ focused, color, size }) => {
+            let iconName;
 
-    <DashboardScreen />
+            if (route.name === 'Onboarding') {
+              iconName = 'home';
+            } else if (route.name === 'Login') {
+              iconName = 'sign-in';
+            } else if (route.name === 'Signup') {
+              iconName = 'user-plus';
+            } else if (route.name === 'TransferList') {
+              iconName = 'list';
+            }
 
+            return <Icon name={iconName} size={size} color={color} />;
+          },
+          tabBarActiveTintColor: '#FF5733',
+          tabBarInactiveTintColor: '#8E8E93',
+          tabBarStyle: styles.tabBar,
+          headerShown: false,
+        })}
+      >
+        <Tab.Screen
+          name="Onboarding"
+          component={DashboardScreen}
+          options={{
+            title: 'Home',
+          }}
+        />
+        <Tab.Screen
+          name="Login"
+          component={LoginScreen}
+          options={{
+            title: 'Login',
+          }}
+        />
+        <Tab.Screen
+          name="."
+          component={AddBankAccountScreen}
+          options={{
+            tabBarIcon: ({ focused }) => (
+              <Icon name="qrcode" size={30} color="#fff" />
+            ),
+            tabBarButton: (props) => <CustomTabBarButton {...props} />,
+ 
+          }}
+        />
+        <Tab.Screen
+          name="Signup"
+          component={RegisterScreen}
+          options={{
+            title: 'Signup',
+          }}
+        />
+        <Tab.Screen
+          name="TransferList"
+          component={TransferListScreen}
+          options={{
+            title: 'Transfers',
+          }}
+        />
+      </Tab.Navigator>
+    </NavigationContainer>
   );
-};
+}
 
-
-export default App;
+const styles = StyleSheet.create({
+  tabBar: {
+    position: 'absolute',
+    bottom: 10,
+    left: 10,
+    right: 10,
+    height: 70,
+    borderRadius: 35,
+    backgroundColor: '#fff',
+    elevation: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 5 },
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    borderTopWidth: 0,
+  },
+  customButtonContainer: {
+    top: -30,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  customButton: {
+    width: 65,
+    height: 65,
+    borderRadius: 32.5,
+    backgroundColor: '#FF5733',
+    justifyContent: 'center',
+    alignItems: 'center',
+    elevation: 10,
+    shadowColor: '#FF5733',
+    shadowOffset: { width: 0, height: 5 },
+    shadowOpacity: 0.4,
+    shadowRadius: 10,
+  },
+});

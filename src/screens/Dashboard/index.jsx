@@ -28,7 +28,7 @@ export default function DashboardScreen() {
         <Text style={styles.greeting}>Hello Naveen</Text>
         <Text style={styles.timestamp}>1 hour ago</Text>
         <TouchableOpacity style={styles.notificationIcon}>
-        {/* <Icon name="notifications" type="material" color="#F77A0C" size={24} /> */}
+
         <View style={styles.notificationBadge}>
           <Text style={styles.notificationBadgeText}>2</Text>
         </View>
