@@ -116,7 +116,7 @@ const App = () => {
       <Stack.Navigator>
         <Stack.Screen
           name="Onboarding"
-          component={ScheduleTransaction}
+          component={Onboarding}
           options={{title: 'Welcome'}}
         />
      
