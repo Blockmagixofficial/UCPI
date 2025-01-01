@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import {View, StyleSheet, Text, TouchableOpacity, Image} from 'react-native';
 import {TextInput, Button, Surface} from 'react-native-paper';
 import {Picker} from '@react-native-picker/picker';
@@ -9,6 +9,7 @@ const LoginScreen = ({ navigation }) => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const pickerRef = useRef();
 
   const countryData = [
     {
@@ -31,9 +32,9 @@ const LoginScreen = ({ navigation }) => {
     }
   };
 
-
-
-
+  const openPicker = () => {
+    pickerRef.current?.focus();
+  };
 
   return (
     <View style={styles.container}>
@@ -61,18 +62,20 @@ const LoginScreen = ({ navigation }) => {
       {tab === 'phone' ? (
         <View style={styles.form}>
           <View style={styles.phoneRow}>
-            <Image
-              source={countryData.find((c) => c.value === selectedCountry)?.flag}
-              style={styles.roundedFlag}
-              resizeMode="cover"
-            />
+            <TouchableOpacity onPress={openPicker}>
+              <Image
+                source={countryData.find((c) => c.value === selectedCountry)?.flag}
+                style={styles.roundedFlag}
+                resizeMode="cover"
+              />
+            </TouchableOpacity>
             <View style={styles.pickerContainer}>
               <Picker
+                ref={pickerRef}
                 selectedValue={selectedCountry}
                 onValueChange={(value) => setSelectedCountry(value)}
                 style={styles.picker}
-                mode="dropdown"
-              >
+                mode="dropdown">
                 {countryData.map((country) => (
                   <Picker.Item
                     key={country.value}
@@ -90,6 +93,7 @@ const LoginScreen = ({ navigation }) => {
               onChangeText={(text) => setPhoneNumber(text)}
             />
           </View>
+
           <Button
             mode="contained"
             onPress={handleRequestOtp}
@@ -191,24 +195,26 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     overflow: 'hidden',
     backgroundColor: '#ddd',
-    marginRight: 8,
+    marginRight: 0,
   },
   pickerContainer: {
-    marginTop: 10,
-    width: 30,
-    justifyContent: 'center',
-    marginRight: 12,
-  },
-  picker: {
-    width: '10%',
-    color: '#333',
-    fontSize: 14,
-  },
-  phoneInput: {
     flex: 1,
+    marginHorizontal: 8,
+    width: '100%',
+  },
+picker: {
+    width: '30%',
+    color: '#333',
+    fontSize: 16,
+    marginLeft: 20
+  },
+
+  phoneInput: {
+    // flex: 1,
     backgroundColor: 'transparent',
     fontSize: 16,
     height: 50,
+    width: '80%',
     // borderBottomColor:'transparent'
   },
   title: {
@@ -253,8 +259,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 16,
-    borderBottomWidth: 1,
-    borderBottomColor: '#ddd',
+    // borderBottomWidth: 1,
+    // borderBottomColor: '#ddd',
     paddingVertical: 4,
   },
   icon: {
@@ -272,7 +278,7 @@ const styles = StyleSheet.create({
   },
   button: {
     borderRadius: 24,
-    backgroundColor: '#1F41BB',
+    backgroundColor: '#f29d71',
   },
   buttonContent: {
     paddingVertical: 8,

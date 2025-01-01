@@ -13,6 +13,7 @@ import DashboardScreen from "./src/screens/Dashboard";
 import UCPIEnter from "./src/screens/EnterUCPI";
 import PaySuccess from "./src/screens/PaySuccess";
 import QRCodeScannerScreen from "./src/screens/ScanQrCodeScreen";
+import TransferScreen from "./src/screens/Transferto";
 
 // Navigation Setup
 const Tab = createBottomTabNavigator();
@@ -59,7 +60,7 @@ function BottomTabs() {
       />
       <Tab.Screen
         name="."
-        component={QRCodeScannerScreen}
+        component={TransferScreen}
         options={{
           tabBarIcon: ({ focused }) => (
             <Icon name="qrcode" size={30} color="#fff" />
@@ -91,7 +92,7 @@ function AuthStack() {
 
 // Root Navigation
 export default function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // Manage user authentication state
+  const [isLoggedIn, setIsLoggedIn] = useState(true); // Manage user authentication state
 
   return (
     <NavigationContainer>
