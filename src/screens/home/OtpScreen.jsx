@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -9,50 +9,50 @@ import {
   Alert,
   ActivityIndicator,
   Dimensions,
-} from 'react-native'
+} from 'react-native';
 
-const { height } = Dimensions.get('window')
+const { height } = Dimensions.get('window');
 
-const OtpScreen = ({ navigation }) => {
-  const [otp, setOtp] = useState(['', '', '', ''])
-  const [isLoading, setIsLoading] = useState(false)
-  const [error, setError] = useState('')
-  const inputRefs = React.useRef([]) // Array of refs for each input box
+const OtpScreen = ({ navigation, setIsLoggedIn }) => {
+  const [otp, setOtp] = useState(['', '', '', '']);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
+  const inputRefs = React.useRef([]); // Array of refs for each input box
 
   const handleOtpChange = (value, index) => {
-    const otpArray = [...otp]
-    otpArray[index] = value
-    setOtp(otpArray)
+    const otpArray = [...otp];
+    otpArray[index] = value;
+    setOtp(otpArray);
 
     if (value && index < otp.length - 1) {
       // Automatically move to the next input
-      inputRefs.current[index + 1].focus()
+      inputRefs.current[index + 1].focus();
     }
 
     if (!value && index > 0) {
       // Automatically move to the previous input if backspace is pressed
-      inputRefs.current[index - 1].focus()
+      inputRefs.current[index - 1].focus();
     }
-  }
+  };
 
   const handleVerifyOtp = () => {
-    setIsLoading(true)
+    setIsLoading(true);
     setTimeout(() => {
-      setIsLoading(false)
+      setIsLoading(false);
       if (otp.join('') === '1234') {
-        Alert.alert('Success', 'OTP Verified Successfully')
+        setIsLoggedIn(true); // Set logged-in state to true
       } else {
-        setError('Invalid or Incorrect OTP. Try Again')
+        setError('Invalid or Incorrect OTP. Try Again');
       }
-    }, 2000)
-  }
+    }, 2000);
+  };
 
   const handleResendOtp = () => {
-    setOtp(['', '', '', ''])
-    setError('')
-    inputRefs.current[0].focus() // Focus back to the first input
-    Alert.alert('OTP Resent', 'A new OTP has been sent to your number.')
-  }
+    setOtp(['', '', '', '']);
+    setError('');
+    inputRefs.current[0].focus(); // Focus back to the first input
+    Alert.alert('OTP Resent', 'A new OTP has been sent to your number.');
+  };
 
   return (
     <View style={styles.container}>
@@ -76,7 +76,7 @@ const OtpScreen = ({ navigation }) => {
       {/* Instructions */}
       <Text style={styles.title}>Enter OTP</Text>
       <Text style={styles.description}>
-        A 4 digit code has been sent to +91 9995380399
+        A 4-digit code has been sent to +91 9995380399
       </Text>
 
       {/* OTP Inputs */}
@@ -118,8 +118,8 @@ const OtpScreen = ({ navigation }) => {
         <Text style={styles.resendText}>Resend OTP</Text>
       </TouchableOpacity>
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -201,7 +201,7 @@ const styles = StyleSheet.create({
   verifyButton: {
     width: '100%',
     paddingVertical: 15,
-    backgroundColor: '#1F41BB', // Updated color
+    backgroundColor: '#FF7738', // Updated color
     borderRadius: 8,
     alignItems: 'center',
     marginBottom: 20,
@@ -217,6 +217,6 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     textAlign: 'center',
   },
-})
+});
 
-export default OtpScreen
+export default OtpScreen;

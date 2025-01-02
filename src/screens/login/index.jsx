@@ -25,10 +25,10 @@ const LoginScreen = ({ navigation }) => {
   ];
 
   const handleRequestOtp = () => {
-    if (phoneNumber.length >= 10) {
-      navigation.navigate('otp', { phoneNumber, selectedCountry });
+    if (phoneNumber.length === 10) {
+      navigation.navigate("Otp", { phoneNumber, selectedCountry });
     } else {
-      alert('Please enter a valid phone number');
+      alert("Please enter a valid 10-digit phone number");
     }
   };
 

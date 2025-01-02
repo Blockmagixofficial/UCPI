@@ -9,6 +9,8 @@ import {
   Dimensions,
 } from "react-native";
 import { Avatar } from "react-native-paper";
+import Icon from "react-native-vector-icons/FontAwesome";
+
 
 const { width } = Dimensions.get("window");
 
@@ -25,9 +27,10 @@ const transactions = [
   { id: "4", title: "Shristi", amount: "$123", status: "Paypal", time: "4 hours ago" },
 ];
 
-export default function DashboardScreen() {
+export default function DashboardScreen({navigation, setIsLoggedIn}) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const sliderRef = useRef(null);
+
 
   const handleScroll = (event) => {
     const offsetX = event.nativeEvent.contentOffset.x;
@@ -42,6 +45,9 @@ export default function DashboardScreen() {
     setCurrentIndex(index);
   };
 
+  const handleLogout = () => {
+    setIsLoggedIn(false); // Reset authentication state
+  };
   return (
     <View style={styles.container}>
       {/* Header */}
@@ -50,9 +56,14 @@ export default function DashboardScreen() {
           <Text style={styles.greeting}>Hello, Naveen</Text>
           <Text style={styles.timestamp}>Welcome back!</Text>
         </View>
-        <TouchableOpacity style={styles.profileButton}>
-          <Avatar.Image size={50} source={{ uri: "https://via.placeholder.com/50" }} />
-        </TouchableOpacity>
+        <View style={styles.headerIcons}>
+          <TouchableOpacity style={styles.profileButton}>
+            <Avatar.Image size={50} source={{ uri: "https://via.placeholder.com/50" }} />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={handleLogout}>
+            <Icon name="sign-out" size={24} color="#F77A0C" style={styles.logoutIcon} />
+          </TouchableOpacity>
+        </View>
       </View>
 
       {/* Custom Slider */}
@@ -146,6 +157,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: 20,
   },
+  headerIcons: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
   greeting: {
     fontSize: 22,
     fontWeight: "bold",
@@ -157,7 +172,10 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
   profileButton: {
-    alignItems: "center",
+    marginRight: 10,
+  },
+  logoutIcon: {
+    marginLeft: 10,
   },
   sliderContainer: {
     marginVertical: 20,

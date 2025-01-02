@@ -11,9 +11,8 @@ import LoginScreen from "./src/screens/login";
 import RegisterScreen from "./src/screens/signUp";
 import DashboardScreen from "./src/screens/Dashboard";
 import UCPIEnter from "./src/screens/EnterUCPI";
-import PaySuccess from "./src/screens/PaySuccess";
 import QRCodeScannerScreen from "./src/screens/ScanQrCodeScreen";
-import TransferScreen from "./src/screens/Transferto";
+import OtpScreen from "./src/screens/home/OtpScreen";
 
 // Navigation Setup
 const Tab = createBottomTabNavigator();
@@ -30,7 +29,7 @@ const CustomTabBarButton = ({ children, onPress }) => (
 );
 
 // Bottom Tab Navigator for Main App
-function BottomTabs() {
+function BottomTabs({ setIsLoggedIn }) {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
@@ -39,7 +38,7 @@ function BottomTabs() {
 
           if (route.name === "Dashboard") {
             iconName = "home";
-          } else if (route.name === "TransferList") {
+          } else if (route.name === "Transfers") {
             iconName = "list";
           }
 
@@ -51,16 +50,18 @@ function BottomTabs() {
         headerShown: false,
       })}
     >
+   <Tab.Screen
+  name="Dashboard"
+  options={{
+    title: "Dashboard",
+  }}
+>
+  {(props) => <DashboardScreen {...props} setIsLoggedIn={setIsLoggedIn} />}
+</Tab.Screen>
+
       <Tab.Screen
-        name="Dashboard"
-        component={DashboardScreen}
-        options={{
-          title: "Home",
-        }}
-      />
-      <Tab.Screen
-        name="."
-        component={TransferScreen}
+        name="QRCode"
+        component={QRCodeScannerScreen}
         options={{
           tabBarIcon: ({ focused }) => (
             <Icon name="qrcode" size={30} color="#fff" />
@@ -69,7 +70,7 @@ function BottomTabs() {
         }}
       />
       <Tab.Screen
-        name="TransferList"
+        name="Transfers"
         component={UCPIEnter}
         options={{
           title: "Transfers",
@@ -80,26 +81,31 @@ function BottomTabs() {
 }
 
 // Stack Navigator for Authentication Flow
-function AuthStack() {
+function AuthStack({ setIsLoggedIn }) {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Onboarding" component={Onboarding} />
-      <Stack.Screen name="Login" component={LoginScreen} />
+      <Stack.Screen name="Login">
+        {(props) => <LoginScreen {...props} setIsLoggedIn={setIsLoggedIn} />}
+      </Stack.Screen>
       <Stack.Screen name="Signup" component={RegisterScreen} />
+      <Stack.Screen name="Otp">
+        {(props) => <OtpScreen {...props} setIsLoggedIn={setIsLoggedIn} />}
+      </Stack.Screen>
     </Stack.Navigator>
   );
 }
 
 // Root Navigation
 export default function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true); // Manage user authentication state
+  const [isLoggedIn, setIsLoggedIn] = useState(true); 
 
   return (
     <NavigationContainer>
       {isLoggedIn ? (
-        <BottomTabs />
+        <BottomTabs setIsLoggedIn={setIsLoggedIn} />
       ) : (
-        <AuthStack />
+        <AuthStack setIsLoggedIn={setIsLoggedIn} />
       )}
     </NavigationContainer>
   );
