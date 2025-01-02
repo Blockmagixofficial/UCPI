@@ -10,7 +10,7 @@ import {
 
 import Keypad from '../../components/keypad';
 
-const UCPIEnterPin = ({ navigation }) => {
+const CheckBalance = ({ navigation }) => {
   const [pin, setPin] = useState(['', '', '', '']);
   const inputRefs = Array(4)
     .fill()
@@ -76,7 +76,7 @@ const UCPIEnterPin = ({ navigation }) => {
 
   const validatePin = (enteredPin) => {
     if (enteredPin.join('') === '1234') {
-      navigation.navigate('PaymentSuccess');
+      navigation.navigate('BalanceSuccess');
     } else {
       Alert.alert('Invalid PIN', 'The PIN you entered is incorrect. Please try again.');
       setPin(['', '', '', '']);
@@ -91,7 +91,7 @@ const UCPIEnterPin = ({ navigation }) => {
           <Text style={styles.arrow}>←</Text>
         </TouchableOpacity>
         <Text style={styles.headerTitle}>
-          Transfer To <Text style={styles.highlight}>Joe Biden</Text>
+        Check Balance
         </Text>
         <TouchableOpacity style={styles.closeButton}>
           <Text style={styles.closeText}>✕</Text>
@@ -102,7 +102,7 @@ const UCPIEnterPin = ({ navigation }) => {
           <Text style={styles.avatarText}>J</Text>
         </View>
         <View style={styles.recipientDetails}>
-          <Text style={styles.recipientName}>Joe Biden</Text>
+          <Text style={styles.recipientName}>Naveen</Text>
           <Text style={styles.recipientID}>23XR...56DD******</Text>
         </View>
         <TouchableOpacity>
@@ -131,9 +131,11 @@ const UCPIEnterPin = ({ navigation }) => {
         ))}
       </View>
       <Text style={styles.footerText}>
-        Transferring money from your UCAC Bank Account to Joe Biden
+      UCPI PIN will keep your account secure
       </Text>
-      <Keypad onPress={handlePressNumber} />
+  
+<View style={{marginTop:150}}>
+<Keypad onPress={handlePressNumber} /></View>
     </View>
   );
 };
@@ -254,4 +256,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default UCPIEnterPin;
+export default CheckBalance;

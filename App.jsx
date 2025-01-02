@@ -13,6 +13,19 @@ import DashboardScreen from "./src/screens/Dashboard";
 import UCPIEnter from "./src/screens/EnterUCPI";
 import QRCodeScannerScreen from "./src/screens/ScanQrCodeScreen";
 import OtpScreen from "./src/screens/home/OtpScreen";
+import { TransferListScreen } from "./src/screens/TransferListScreen";
+import TransferScreen from "./src/screens/Transferto";
+import UCPIEnterPin from "./src/screens/EnterUCPI";
+import PaySuccess from "./src/screens/PaySuccess";
+import { RequestListScreen } from "./src/screens/RequestList";
+import RequestScreen from "./src/screens/RequestTo";
+import RequestSuccess from "./src/screens/RequestSuccess";
+import CheckBalance from "./src/screens/CheckBalance";
+import BalanceSuccess from "./src/screens/BalanceSuccess";
+import ScheduleListScreen from "./src/screens/ScheduleList";
+import ScheduleTransaction from "./src/screens/Schedule";
+import UCPIPinScreen from "./src/screens/RecurringTransaction/UCPIPin";
+import OTPEnter from "./src/screens/OTP";
 
 // Navigation Setup
 const Tab = createBottomTabNavigator();
@@ -50,33 +63,131 @@ function BottomTabs({ setIsLoggedIn }) {
         headerShown: false,
       })}
     >
-   <Tab.Screen
-  name="Dashboard"
-  options={{
-    title: "Dashboard",
-  }}
->
-  {(props) => <DashboardScreen {...props} setIsLoggedIn={setIsLoggedIn} />}
-</Tab.Screen>
+      <Tab.Screen
+        name="Dashboard"
+        options={{
+          title: "Dashboard",
+        }}
+      >
+        {(props) => <DashboardScreen {...props} setIsLoggedIn={setIsLoggedIn} />}
+      </Tab.Screen>
 
       <Tab.Screen
         name="QRCode"
         component={QRCodeScannerScreen}
         options={{
-          tabBarIcon: ({ focused }) => (
-            <Icon name="qrcode" size={30} color="#fff" />
+          tabBarIcon: ({ color, size }) => (
+            <Icon name="qrcode" size={30} color={color} />
           ),
           tabBarButton: (props) => <CustomTabBarButton {...props} />,
         }}
       />
+
       <Tab.Screen
         name="Transfers"
         component={UCPIEnter}
         options={{
           title: "Transfers",
+          tabBarIcon: ({ color, size }) => (
+            <Icon name="list" size={size} color={color} />
+          ),
         }}
       />
     </Tab.Navigator>
+  );
+}
+
+// Root Stack Navigator
+function RootStack({ setIsLoggedIn }) {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="BottomTabs">
+        {(props) => <BottomTabs {...props} setIsLoggedIn={setIsLoggedIn} />}
+      </Stack.Screen>
+      <Stack.Screen name="TransferListScreen">
+        {(props) => <TransferListScreen {...props} setIsLoggedIn={setIsLoggedIn} />}
+      </Stack.Screen>
+
+      <Stack.Screen name="TransferTo">
+        {(props) => <TransferScreen {...props} setIsLoggedIn={setIsLoggedIn} />}
+      </Stack.Screen>
+
+      <Stack.Screen name="UCPIpin">
+        {(props) => <UCPIEnterPin {...props} setIsLoggedIn={setIsLoggedIn} />}
+      </Stack.Screen>
+      <Stack.Screen name="PaymentSuccess">
+        {(props) => <PaySuccess {...props} setIsLoggedIn={setIsLoggedIn} />}
+      </Stack.Screen>
+
+
+      {/* ------RequestRoutes------------? */}
+
+      <Stack.Screen name="RequestListScreen">
+        {(props) => <RequestListScreen  {...props} setIsLoggedIn={setIsLoggedIn} />}
+      </Stack.Screen>
+
+      <Stack.Screen name="RequestTo">
+        {(props) => <RequestScreen  {...props} setIsLoggedIn={setIsLoggedIn} />}
+      </Stack.Screen>
+
+      <Stack.Screen name="RequestSuccess">
+        {(props) => <RequestSuccess {...props} setIsLoggedIn={setIsLoggedIn} />}
+      </Stack.Screen>
+
+      {/* ------BalanceRoutes------------? */}
+
+
+      <Stack.Screen name="BalanceScreen">
+        {(props) => <CheckBalance  {...props} setIsLoggedIn={setIsLoggedIn} />}
+      </Stack.Screen>
+
+
+      <Stack.Screen name="BalanceSuccess">
+        {(props) => <BalanceSuccess  {...props} setIsLoggedIn={setIsLoggedIn} />}
+      </Stack.Screen>
+
+
+      {/* ------ScheduleRoutes------------? */}
+
+      <Stack.Screen name="ScheduleScreen">
+        {(props) => <ScheduleListScreen  {...props} setIsLoggedIn={setIsLoggedIn} />}
+      </Stack.Screen>
+
+      <Stack.Screen name="ScheduleTransaction">
+        {(props) => <ScheduleTransaction  {...props} setIsLoggedIn={setIsLoggedIn} />}
+      </Stack.Screen>
+
+      <Stack.Screen name="UCPIPinScreen">
+        {(props) => <UCPIPinScreen  {...props} setIsLoggedIn={setIsLoggedIn} />}
+      </Stack.Screen>
+
+
+      <Stack.Screen name="OtpScreen">
+        {(props) => <OTPEnter  {...props} setIsLoggedIn={setIsLoggedIn} />}
+      </Stack.Screen>
+
+      {/* <Stack.Screen name="ScheduleTransactionScreen">
+        {(props) => <ScheduleTransactionScreen  {...props} setIsLoggedIn={setIsLoggedIn} />}
+      </Stack.Screen> */}
+
+
+
+    </Stack.Navigator>
+  );
+}
+
+// Root Navigation
+export default function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+
+  return (
+    <NavigationContainer>
+      {isLoggedIn ? (
+        <RootStack setIsLoggedIn={setIsLoggedIn} />
+      ) : (
+        <AuthStack setIsLoggedIn={setIsLoggedIn} />
+      )}
+    </NavigationContainer>
   );
 }
 
@@ -93,21 +204,6 @@ function AuthStack({ setIsLoggedIn }) {
         {(props) => <OtpScreen {...props} setIsLoggedIn={setIsLoggedIn} />}
       </Stack.Screen>
     </Stack.Navigator>
-  );
-}
-
-// Root Navigation
-export default function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true); 
-
-  return (
-    <NavigationContainer>
-      {isLoggedIn ? (
-        <BottomTabs setIsLoggedIn={setIsLoggedIn} />
-      ) : (
-        <AuthStack setIsLoggedIn={setIsLoggedIn} />
-      )}
-    </NavigationContainer>
   );
 }
 

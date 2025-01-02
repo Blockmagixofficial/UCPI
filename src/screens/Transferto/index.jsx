@@ -8,6 +8,7 @@ import {
   Animated,
   PanResponder,
   Image,
+  Alert,
 } from 'react-native';
 import Svg, { Rect, Defs, Pattern, Use, Image as SvgImage } from 'react-native-svg';
 import rightArrow from '../../assets/rightArrow.png';
@@ -37,7 +38,7 @@ const RightArrowSVG = ({ opacity }) => (
   </Svg>
 );
 
-const TransferScreen = () => {
+const TransferScreen = ({ navigation }) => {
   const [amount, setAmount] = useState('');
   const pan = useState(new Animated.ValueXY())[0];
 
@@ -56,7 +57,14 @@ const TransferScreen = () => {
     }),
     onPanResponderRelease: () => {
       if (pan.x._value > 100) {
-        Animated.spring(pan, { toValue: { x: 0, y: 0 }, useNativeDriver: false }).start();
+        if (!amount || parseFloat(amount) === 0) {
+          Alert.alert('Error', 'Please enter a valid amount before proceeding.');
+          Animated.spring(pan, { toValue: { x: 0, y: 0 }, useNativeDriver: false }).start();
+        } else {
+          Animated.spring(pan, { toValue: { x: 0, y: 0 }, useNativeDriver: false }).start(() => {
+            navigation.navigate('UCPIpin', { amount });
+          });
+        }
       } else {
         Animated.spring(pan, { toValue: { x: 0, y: 0 }, useNativeDriver: false }).start();
       }
@@ -65,6 +73,7 @@ const TransferScreen = () => {
 
   return (
     <View style={styles.container}>
+      {/* Header */}
       <View style={styles.header}>
         <TouchableOpacity style={styles.backButton}>
           <Text style={styles.arrow}>←</Text>
@@ -76,6 +85,8 @@ const TransferScreen = () => {
           <Text style={styles.closeText}>✕</Text>
         </TouchableOpacity>
       </View>
+
+      {/* Recipient Details */}
       <View style={styles.recipientContainer}>
         <View style={styles.avatar}>
           <Text style={styles.avatarText}>J</Text>
@@ -88,6 +99,8 @@ const TransferScreen = () => {
           <Text style={styles.eyeIcon}>👁</Text>
         </TouchableOpacity>
       </View>
+
+      {/* Amount Input */}
       <View>
         <Text style={styles.EnterAmount}>Enter Amount</Text>
       </View>
@@ -101,6 +114,8 @@ const TransferScreen = () => {
           onChangeText={(value) => setAmount(value.replace(/[^0-9.]/g, ''))}
         />
       </View>
+
+      {/* Swipe to Send Now */}
       <View style={styles.sendNowContainer}>
         <View style={styles.blackBackground}>
           <Text style={styles.sendNowText}>Send Now</Text>
@@ -117,6 +132,8 @@ const TransferScreen = () => {
           </Animated.View>
         </View>
       </View>
+
+      {/* Keypad */}
       <Keypad onPress={handlePressNumber} />
     </View>
   );

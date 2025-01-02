@@ -98,11 +98,28 @@ export default function DashboardScreen({navigation, setIsLoggedIn}) {
       <View>
         <Text style={styles.sectionTitle}>Payment Options</Text>
         <View style={styles.paymentOptions}>
-          <PaymentOption title="Pay" image={require("../../assets/refund.png")} />
-          <PaymentOption title="Request" image={require("../../assets/receive.png")} />
-          <PaymentOption title="Balance" image={require("../../assets/balance.png")} />
-          <PaymentOption title="Schedule" image={require("../../assets/time.png")} />
-        </View>
+  <PaymentOption
+    title="Pay"
+    image={require("../../assets/refund.png")}
+    onPress={() => navigation.navigate("TransferListScreen")}
+  />
+  <PaymentOption
+    title="Request"
+    image={require("../../assets/receive.png")}
+    onPress={() => navigation.navigate("RequestListScreen")} // Replace with your screen
+  />
+  <PaymentOption
+    title="Balance"
+    image={require("../../assets/balance.png")}
+    onPress={() => navigation.navigate("BalanceScreen")} // Replace with your screen
+  />
+  <PaymentOption
+    title="Schedule"
+    image={require("../../assets/time.png")}
+    onPress={() => navigation.navigate("ScheduleScreen")} // Replace with your screen
+  />
+</View>
+
       </View>
 
       {/* Transactions */}
@@ -134,9 +151,9 @@ export default function DashboardScreen({navigation, setIsLoggedIn}) {
   );
 }
 
-function PaymentOption({ title, image }) {
+function PaymentOption({ title, image, onPress }) {
   return (
-    <TouchableOpacity style={styles.paymentOption}>
+    <TouchableOpacity style={styles.paymentOption} onPress={onPress}>
       <View style={styles.paymentOptionIconContainer}>
         <Image source={image} style={styles.paymentOptionImage} />
       </View>
@@ -144,6 +161,7 @@ function PaymentOption({ title, image }) {
     </TouchableOpacity>
   );
 }
+
 
 const styles = StyleSheet.create({
   container: {

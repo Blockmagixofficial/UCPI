@@ -1,12 +1,26 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Image,
+  ActivityIndicator,
+} from 'react-native';
 import success from '../../assets/success.png';
 
-const BalanceSuccess = () => {
+const RequestSuccess = ({ route, navigation }) => {
+  const [isLoading, setIsLoading] = useState(true);
   const [currentDate, setCurrentDate] = useState('');
   const [currentTime, setCurrentTime] = useState('');
 
+  const { recipientName, recipientID, amount, avatarInitial } = route.params;
+
   useEffect(() => {
+    // Simulate loading
+    const timeout = setTimeout(() => setIsLoading(false), 2000);
+
+    // Generate current date and time
     const now = new Date();
     const date = now.toLocaleDateString('en-US', {
       day: '2-digit',
@@ -21,14 +35,26 @@ const BalanceSuccess = () => {
 
     setCurrentDate(date);
     setCurrentTime(time);
+
+    return () => clearTimeout(timeout);
   }, []);
+
+  if (isLoading) {
+    return (
+      <View style={styles.loadingContainer}>
+        <ActivityIndicator size="large" color="#FF7F42" />
+        <Text style={styles.loadingText}>Processing Payment...</Text>
+      </View>
+    );
+  }
+
   return (
     <View style={styles.container}>
       {/* Top Section */}
       <View style={styles.header}>
-        <Text style={styles.paymentText}>Account Balance fetched successfully</Text>
+        <Text style={styles.paymentText}>Request Successful</Text>
         <Text style={styles.dateText}>
-        {currentDate} at {currentTime}
+          {currentDate} at {currentTime}
         </Text>
       </View>
 
@@ -41,22 +67,17 @@ const BalanceSuccess = () => {
       <View style={styles.detailsContainer}>
         <View style={styles.recipientCard}>
           <View style={styles.avatar}>
-            <Text style={styles.avatarText}>J</Text>
+            <Text style={styles.avatarText}>{avatarInitial}</Text>
           </View>
           <View style={styles.details}>
-            <Text style={styles.recipientName}>Joe Biden</Text>
-            <Text style={styles.recipientID}>23XR...56DD******</Text>
+            <Text style={styles.recipientName}>{recipientName}</Text>
+            <Text style={styles.recipientID}>{recipientID}</Text>
           </View>
+          <Text style={styles.amountText}>${amount}</Text>
         </View>
         <TouchableOpacity>
           <Text style={styles.receiptText}>View Receipt</Text>
         </TouchableOpacity>
-      </View>
-
-      {/* Available Amount Section */}
-      <View style={styles.amountContainer}>
-        <Text style={styles.amountTitle}>Available Amount</Text>
-        <Text style={styles.amountText}>$123.78</Text>
       </View>
     </View>
   );
@@ -66,6 +87,19 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#FFFFFF',
+  },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#FFFFFF',
+  },
+  loadingText: {
+    marginTop: 20,
+    fontSize: 16,
+    fontWeight: '600',
+    fontFamily: 'Inter',
+    color: '#555',
   },
   header: {
     backgroundColor: '#FF7F42',
@@ -78,7 +112,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '600',
     fontFamily: 'Inter',
-    color: 'black',
+    color: '#FFFFFF',
   },
   dateText: {
     fontSize: 14,
@@ -144,6 +178,12 @@ const styles = StyleSheet.create({
     color: '#A3A3A3',
     marginTop: 3,
   },
+  amountText: {
+    fontSize: 16,
+    fontWeight: '600',
+    fontFamily: 'Inter',
+    color: '#333',
+  },
   receiptText: {
     fontSize: 14,
     fontWeight: '600',
@@ -152,25 +192,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 15,
   },
-  amountContainer: {
-    flex: 1,
-    marginTop: 15,
-
-    alignItems: 'center',
-  },
-  amountTitle: {
-    fontSize: 18,
-    fontWeight: '600',
-    fontFamily: 'Inter',
-    color: '#333',
-    marginBottom: 5,
-  },
-  amountText: {
-    fontSize: 24,
-    fontWeight: '900',
-    fontFamily: 'Inter',
-    color: 'black',
-  },
 });
 
-export default BalanceSuccess;
+export default RequestSuccess;

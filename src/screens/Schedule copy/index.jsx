@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity, TextInput } from 'react-native'
 
-const ScheduleTransaction = ({navigation}) => {
+const ScheduleTransactionScreen = ({navigation}) => {
   return (
     <View style={styles.container}>
       {/* Header Section */}
@@ -68,17 +68,17 @@ const ScheduleTransaction = ({navigation}) => {
 
       {/* Buttons Section */}
       <View style={styles.buttonsContainer}>
-        {/* <TouchableOpacity style={styles.scheduledButton}>
+        <TouchableOpacity style={styles.scheduledButton}>
           <Text style={styles.scheduledButtonText}>Scheduled Transaction</Text>
-        </TouchableOpacity> */}
+        </TouchableOpacity>
         <TouchableOpacity style={styles.repeatButton} 
         onPress={() => navigation.navigate('UCPIPinScreen')}
         >
           <Text style={styles.repeatButtonText}>Continue</Text>
         </TouchableOpacity>
-        {/* <TouchableOpacity style={styles.cancelButton}>
+        <TouchableOpacity style={styles.cancelButton}>
           <Text style={styles.cancelButtonText}>Cancel Transaction</Text>
-        </TouchableOpacity> */}
+        </TouchableOpacity>
       </View>
     </View>
   )
@@ -231,4 +231,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default ScheduleTransaction
+export default ScheduleTransactionScreen;

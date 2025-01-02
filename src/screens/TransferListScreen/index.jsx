@@ -61,27 +61,41 @@ export function TransferListScreen({ navigation }) {
         data={filteredData}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
-          <View style={styles.listItem}>
-            <View style={styles.avatar}>
-              <Text style={styles.avatarText}>{item.name}</Text>
-            </View>
-            <View style={styles.details}>
-              <Text style={styles.ucpi}>{item.ucpi}</Text>
-              <Text style={styles.transaction}>
-                {item.amount} -{" "}
-                <Text
-                  style={{
-                    color: item.status === "Successful" ? "green" : "red",
-                  }}
-                >
-                  {item.status}
+          <TouchableOpacity
+            onPress={() =>
+              navigation.navigate("TransferTo", {
+                id: item.id,
+                name: item.name,
+                ucpi: item.ucpi,
+                amount: item.amount,
+                status: item.status,
+                date: item.date,
+              })
+            }
+          >
+            <View style={styles.listItem}>
+              <View style={styles.avatar}>
+                <Text style={styles.avatarText}>{item.name}</Text>
+              </View>
+              <View style={styles.details}>
+                <Text style={styles.ucpi}>{item.ucpi}</Text>
+                <Text style={styles.transaction}>
+                  {item.amount} -{" "}
+                  <Text
+                    style={{
+                      color: item.status === "Successful" ? "green" : "red",
+                    }}
+                  >
+                    {item.status}
+                  </Text>
                 </Text>
-              </Text>
+              </View>
+              <Text style={styles.date}>{item.date}</Text>
             </View>
-            <Text style={styles.date}>{item.date}</Text>
-          </View>
+          </TouchableOpacity>
         )}
       />
+
 
       {/* Floating Button */}
       <TouchableOpacity style={styles.floatingButton}>
@@ -97,71 +111,71 @@ export function TransferListScreen({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-    container: { flex: 1, backgroundColor: "#fff" },
-    header: {
-      flexDirection: "row",
-      justifyContent: "space-between",
-      alignItems: "center",
-      paddingHorizontal: 25,
-      paddingVertical: 35,
-      borderBottomLeftRadius: 20,
-      borderBottomRightRadius: 20,
-      elevation: 5, // Slight shadow for header
-    },
-    headerTitle: { fontSize: 20, fontWeight: "bold", color: "#fff" },
-    iconButton: { padding: 12 },
-    searchBar: {
-      flexDirection: "row",
-      alignItems: "center",
-      backgroundColor: "#f5f5f5",
-      marginHorizontal: 15,
-      marginVertical: 12,
-      borderRadius: 15,
-      paddingHorizontal: 15,
-      paddingVertical: 10,
-      elevation: 2,
-    },
-    searchInput: { flex: 1, marginLeft: 10, fontSize: 16 },
-    listItem: {
-      flexDirection: "row",
-      justifyContent: "space-between",
-      alignItems: "center",
-      paddingVertical: 18,
-      paddingHorizontal: 20,
-      borderBottomWidth: 0.7,
-      borderColor: "#e0e0e0",
-      backgroundColor: "#fdfdfd",
-    },
-    avatar: {
-      width: 55,
-      height: 55,
-      borderRadius: 27.5,
-      backgroundColor: "#fff",
-      justifyContent: "center",
-      alignItems: "center",
-      borderColor: "#FF8B50",
-      borderWidth: 2,
-      elevation: 2,
-    },
-    avatarText: { color: "#FF8B50", fontWeight: "bold", fontSize: 18 },
-    details: { flex: 1, marginLeft: 20 },
-    ucpi: { fontWeight: "bold", fontSize: 15, marginBottom: 5 },
-    transaction: { color: "#8E8E8E", fontSize: 14 },
-    date: { color: "#8E8E8E", fontSize: 12 },
-    floatingButton: {
-      position: "absolute",
-      bottom: 25,
-      right: 25,
-      width: 65,
-      height: 65,
-      borderRadius: 32.5,
-      elevation: 8,
-    },
-    floatingButtonGradient: {
-      flex: 1,
-      justifyContent: "center",
-      alignItems: "center",
-      borderRadius: 32.5,
-    },
-  });
-  
+  container: { flex: 1, backgroundColor: "#fff" },
+  header: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingHorizontal: 25,
+    paddingVertical: 35,
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
+    elevation: 5, // Slight shadow for header
+  },
+  headerTitle: { fontSize: 20, fontWeight: "bold", color: "#fff" },
+  iconButton: { padding: 12 },
+  searchBar: {
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "#f5f5f5",
+    marginHorizontal: 15,
+    marginVertical: 12,
+    borderRadius: 15,
+    paddingHorizontal: 15,
+    paddingVertical: 10,
+    elevation: 2,
+  },
+  searchInput: { flex: 1, marginLeft: 10, fontSize: 16 },
+  listItem: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingVertical: 18,
+    paddingHorizontal: 20,
+    borderBottomWidth: 0.7,
+    borderColor: "#e0e0e0",
+    backgroundColor: "#fdfdfd",
+  },
+  avatar: {
+    width: 55,
+    height: 55,
+    borderRadius: 27.5,
+    backgroundColor: "#fff",
+    justifyContent: "center",
+    alignItems: "center",
+    borderColor: "#FF8B50",
+    borderWidth: 2,
+    elevation: 2,
+  },
+  avatarText: { color: "#FF8B50", fontWeight: "bold", fontSize: 18 },
+  details: { flex: 1, marginLeft: 20 },
+  ucpi: { fontWeight: "bold", fontSize: 15, marginBottom: 5 },
+  transaction: { color: "#8E8E8E", fontSize: 14 },
+  date: { color: "#8E8E8E", fontSize: 12 },
+  floatingButton: {
+    position: "absolute",
+    bottom: 25,
+    right: 25,
+    width: 65,
+    height: 65,
+    borderRadius: 32.5,
+    elevation: 8,
+  },
+  floatingButtonGradient: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 32.5,
+  },
+});
+
