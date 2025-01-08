@@ -11,7 +11,6 @@ import LoginScreen from "./src/screens/login";
 import RegisterScreen from "./src/screens/signUp";
 import DashboardScreen from "./src/screens/Dashboard";
 import UCPIEnter from "./src/screens/EnterUCPI";
-import QRCodeScannerScreen from "./src/screens/ScanQrCodeScreen";
 import OtpScreen from "./src/screens/home/OtpScreen";
 import { TransferListScreen } from "./src/screens/TransferListScreen";
 import TransferScreen from "./src/screens/Transferto";
@@ -74,7 +73,7 @@ function BottomTabs({ setIsLoggedIn }) {
 
       <Tab.Screen
         name="QRCode"
-        component={QRCodeScannerScreen}
+        component={UCPIEnter}
         options={{
           tabBarIcon: ({ color, size }) => (
             <Icon name="qrcode" size={30} color={color} />
