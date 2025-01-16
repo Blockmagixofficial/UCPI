@@ -1,16 +1,41 @@
 {
   "cli": {
-    "version": ">= 11.0.1"
+    "version": ">= 14.4.1",
+    "appVersionSource": "remote"
   },
   "build": {
+    // <----------- DEVELOPMENT BUILD -------------------------------->
     "development": {
       "developmentClient": true,
-      "distribution": "internal"
+      "distribution": "internal",
+      "ios": {
+        "resourceClass": "m-medium",
+        "simulator": false
+      },
+      "env": {},
+      "channel": "development"
     },
+    // >---------------- TEST PREVIEW BUILD -------------------------------->
     "preview": {
-      "distribution": "internal"
+      "distribution": "internal",
+      "ios": {
+        "resourceClass": "m-medium"
+      },
+      "env": {},
+      "channel": "preview",
+      "autoIncrement": true
     },
-    "production": {}
+    // >------ PLAY STORE BUILD -------------------------------->
+    "production": {
+      "android": {
+        "resourceClass": "medium"
+      },
+      "ios": {
+        "resourceClass": "m-medium"
+      },
+      "env": {},
+      "channel": "production"
+    }
   },
   "submit": {
     "production": {}
