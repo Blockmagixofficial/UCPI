@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
   },
   header: {
-    backgroundColor: "#FF7F42",
+    backgroundColor: "#EE7F18",
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
   avatarText: {
     fontSize: 36,
     fontWeight: "600",
-    color: "#FF7F42",
+    color: "#EE7F18",
   },
   name: {
     fontSize: 22,
@@ -156,7 +156,7 @@ const styles = StyleSheet.create({
     color: "#333",
   },
   shareButton: {
-    backgroundColor: "#FF7F42",
+    backgroundColor: "#EE7F18",
     paddingVertical: 12,
     paddingHorizontal: 25,
     borderRadius: 25,

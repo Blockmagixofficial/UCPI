@@ -16,7 +16,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#ffffff"
       },
       "package": "com.ashwini0407.cfi"
@@ -25,8 +25,9 @@
       "favicon": "./assets/favicon.png"
     },
     "extra": {
-     
+      "eas": {
+        "projectId": "6444522c-94dc-4c90-b940-ed6f654fcc1b"
+      }
     }
-   
   }
 }

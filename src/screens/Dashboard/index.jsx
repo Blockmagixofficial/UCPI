@@ -7,7 +7,6 @@ import {
   TouchableOpacity,
   Image,
   Dimensions,
-  ScrollView,
 } from "react-native";
 import { Avatar } from "react-native-paper";
 import Icon from "react-native-vector-icons/FontAwesome";
@@ -75,117 +74,136 @@ export default function DashboardScreen({ navigation, setIsLoggedIn }) {
     setIsLoggedIn(false);
   };
 
-  return (
-    <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
-      {/* Header */}
-      <View style={styles.header}>
-        <View>
-          <Text style={styles.greeting}>Hello, Naveen</Text>
-          <Text style={styles.timestamp}>Welcome back!</Text>
-        </View>
-        <View style={styles.headerIcons}>
-          <TouchableOpacity
-            style={styles.notificationButton}
-          ></TouchableOpacity>
-          <TouchableOpacity style={styles.profileButton}>
-            <Icon name="bell" size={24} color="#F77A0C" />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={handleLogout}>
-            <Icon
-              name="sign-out"
-              size={24}
-              color="#F77A0C"
-              style={styles.logoutIcon}
-            />
-          </TouchableOpacity>
-        </View>
-      </View>
+  // Combine all data for the FlatList (header, slider, payment options, transactions)
+  const allData = [
+    { type: 'header' },
+    { type: 'slider' },
+    { type: 'paymentOptions' },
+    { type: 'transactions' }
+  ];
 
-      {/* Custom Slider */}
-      <View style={styles.sliderContainer}>
-        <FlatList
-          data={sliderImages}
-          horizontal
-          pagingEnabled
-          showsHorizontalScrollIndicator={false}
-          keyExtractor={(item) => item.id}
-          onScroll={handleScroll}
-          ref={sliderRef}
-          renderItem={({ item }) => (
-            <Image source={{ uri: item.uri }} style={styles.sliderImage} />
-          )}
-        />
-        <View style={styles.pagination}>
-          {sliderImages.map((_, index) => (
-            <TouchableOpacity
-              key={index}
-              style={[
-                styles.paginationDot,
-                currentIndex === index && styles.paginationDotActive,
-              ]}
-              onPress={() => goToSlide(index)}
-            />
-          ))}
-        </View>
-      </View>
-
-      {/* Payment Options */}
-      <View
-        style={{
-          paddingHorizontal: 15,
-        }}
-      >
-        <Text style={styles.sectionTitle}>Payment Options</Text>
-        <View style={styles.paymentOptions}>
-          <PaymentOption
-            title="Pay"
-            image={require("../../assets/refund.png")}
-            onPress={() => navigation.navigate("TransferListScreen")}
-          />
-          <PaymentOption
-            title="Request"
-            image={require("../../assets/receive.png")}
-            onPress={() => navigation.navigate("RequestListScreen")}
-          />
-          <PaymentOption
-            title="Balance"
-            image={require("../../assets/balance.png")}
-            onPress={() => navigation.navigate("BalanceScreen")}
-          />
-          <PaymentOption
-            title="Schedule"
-            image={require("../../assets/time.png")}
-            onPress={() => navigation.navigate("ScheduleScreen")}
-          />
-        </View>
-      </View>
-
-      {/* Transactions */}
-      <View style={styles.transactions}>
-        <Text style={styles.sectionTitle}>Recent Transactions</Text>
-        <FlatList
-          data={transactions}
-          keyExtractor={(item) => item.id}
-          renderItem={({ item }) => (
-            <View style={styles.transactionItem}>
-              <Avatar.Text
-                size={40}
-                label={item.title.charAt(0).toUpperCase()}
-                style={styles.avatar}
-              />
-              <View style={styles.transactionDetails}>
-                <Text style={styles.transactionTitle}>{item.title}</Text>
-                <Text style={styles.transactionTime}>{item.time}</Text>
-              </View>
-              <View style={styles.transactionAmount}>
-                <Text style={styles.transactionAmountText}>{item.amount}</Text>
-                <Text style={styles.transactionMethod}>{item.status}</Text>
-              </View>
+  const renderItem = ({ item }) => {
+    switch (item.type) {
+      case 'header':
+        return (
+          <View style={styles.header}>
+            <View>
+              <Text style={styles.greeting}>Hello, Naveen</Text>
+              <Text style={styles.timestamp}>Welcome back!</Text>
             </View>
-          )}
-        />
-      </View>
-    </ScrollView>
+            <View style={styles.headerIcons}>
+              <TouchableOpacity
+                style={styles.notificationButton}
+              ></TouchableOpacity>
+              <TouchableOpacity style={styles.profileButton}>
+                <Icon name="bell" size={24} color="#EE7F18" />
+              </TouchableOpacity>
+              <TouchableOpacity onPress={handleLogout}>
+                <Icon
+                  name="sign-out"
+                  size={24}
+                  color="#EE7F18"
+                  style={styles.logoutIcon}
+                />
+              </TouchableOpacity>
+            </View>
+          </View>
+        );
+      case 'slider':
+        return (
+          <View style={styles.sliderContainer}>
+            <FlatList
+              data={sliderImages}
+              horizontal
+              pagingEnabled
+              showsHorizontalScrollIndicator={false}
+              keyExtractor={(item) => item.id}
+              onScroll={handleScroll}
+              ref={sliderRef}
+              renderItem={({ item }) => (
+                <Image source={{ uri: item.uri }} style={styles.sliderImage} />
+              )}
+            />
+            <View style={styles.pagination}>
+              {sliderImages.map((_, index) => (
+                <TouchableOpacity
+                  key={index}
+                  style={[
+                    styles.paginationDot,
+                    currentIndex === index && styles.paginationDotActive,
+                  ]}
+                  onPress={() => goToSlide(index)}
+                />
+              ))}
+            </View>
+          </View>
+        );
+      case 'paymentOptions':
+        return (
+          <View style={{ paddingHorizontal: 15 }}>
+            <Text style={styles.sectionTitle}>Payment Options</Text>
+            <View style={styles.paymentOptions}>
+              <PaymentOption
+                title="Pay"
+                image={require("../../assets/refund.png")}
+                onPress={() => navigation.navigate("TransferListScreen")}
+              />
+              <PaymentOption
+                title="Request"
+                image={require("../../assets/receive.png")}
+                onPress={() => navigation.navigate("RequestListScreen")}
+              />
+              <PaymentOption
+                title="Balance"
+                image={require("../../assets/balance.png")}
+                onPress={() => navigation.navigate("BalanceScreen")}
+              />
+              <PaymentOption
+                title="Schedule"
+                image={require("../../assets/time.png")}
+                onPress={() => navigation.navigate("ScheduleScreen")}
+              />
+            </View>
+          </View>
+        );
+      case 'transactions':
+        return (
+          <View style={styles.transactions}>
+            <Text style={styles.sectionTitle}>Recent Transactions</Text>
+            <FlatList
+              data={transactions}
+              keyExtractor={(item) => item.id}
+              renderItem={({ item }) => (
+                <View style={styles.transactionItem}>
+                  <Avatar.Text
+                    size={40}
+                    label={item.title.charAt(0).toUpperCase()}
+                    style={styles.avatar}
+                  />
+                  <View style={styles.transactionDetails}>
+                    <Text style={styles.transactionTitle}>{item.title}</Text>
+                    <Text style={styles.transactionTime}>{item.time}</Text>
+                  </View>
+                  <View style={styles.transactionAmount}>
+                    <Text style={styles.transactionAmountText}>{item.amount}</Text>
+                    <Text style={styles.transactionMethod}>{item.status}</Text>
+                  </View>
+                </View>
+              )}
+            />
+          </View>
+        );
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <FlatList
+      data={allData}
+      renderItem={renderItem}
+      keyExtractor={(item, index) => index.toString()}
+    />
   );
 }
 
@@ -207,21 +225,14 @@ const styles = StyleSheet.create({
   },
   header: {
     flexDirection: "row",
-    paddingHorizontal: 0,
-
     justifyContent: "space-between",
     alignItems: "center",
-    backgroundColor: "#F9F9F9", // Soft background color
-    paddingHorizontal: 15, // Inner padding for left/right
-    paddingVertical: 10, // Inner padding for top/bottom
-    height: 80, // Fixed height for consistency
-    elevation: 3, // Subtle shadow for depth
-    shadowColor: "#000", // Shadow color
-    shadowOffset: { width: 0, height: 2 }, // Shadow position
-    shadowOpacity: 0.1, // Shadow transparency
-    marginTop: 30, // Space from the top
+    paddingHorizontal: 15,
+    paddingVertical: 10,
+  
+    height: 80,
+    marginTop: 30,
   },
-
   headerIcons: {
     flexDirection: "row",
     alignItems: "center",
@@ -241,7 +252,7 @@ const styles = StyleSheet.create({
   },
   profileButton: {
     marginRight: 10,
-    borderColor: "orange",
+    borderColor: "#EE7F18",
     borderWidth: 1,
     padding: 10,
     borderRadius: 50,
@@ -273,7 +284,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 5,
   },
   paginationDotActive: {
-    backgroundColor: "#F77A0C",
+    backgroundColor: "#EE7F18",
   },
   sectionTitle: {
     fontSize: 18,
@@ -292,10 +303,9 @@ const styles = StyleSheet.create({
     marginHorizontal: 5,
   },
   paymentOptionIconContainer: {
-    backgroundColor: "#F77A0C",
+    backgroundColor: "#EE7F18",
     borderRadius: 15,
     paddingHorizontal: 15,
-
     width: 60,
     height: 60,
     justifyContent: "center",
@@ -314,7 +324,6 @@ const styles = StyleSheet.create({
   transactions: {
     marginTop: 20,
     paddingHorizontal: 15,
-    marginBottom:100
   },
   transactionItem: {
     flexDirection: "row",
@@ -323,14 +332,10 @@ const styles = StyleSheet.create({
     padding: 15,
     borderRadius: 10,
     marginBottom: 10,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 2,
   },
   avatar: {
-    backgroundColor: "#FF8B50",
+    backgroundColor: "#EE7F18",
+    color:"white"
   },
   transactionDetails: {
     flex: 1,

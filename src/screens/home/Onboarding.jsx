@@ -164,8 +164,8 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 0,
     width: '100%',
-    height: '30%', // Match the proportion of the orange section from your UI
-    backgroundColor: '#FF7E5F', // Solid orange background
+    height: '30%',
+    backgroundColor: '#FF7E5F', 
     justifyContent: 'center',
   },
   buttonContainer: {

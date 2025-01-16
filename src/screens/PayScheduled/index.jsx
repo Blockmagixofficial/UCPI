@@ -49,7 +49,7 @@ const PayScheduled = ({ route }) => {
     <View style={styles.container}>
       {/* Top Section */}
       <View style={styles.header}>
-        <Text style={styles.paymentText}>Payment Successful</Text>
+        <Text style={styles.paymentText}>Scheduled Successful</Text>
         <Text style={styles.dateText}>
           {formattedDate} at {formattedTime}
         </Text>
