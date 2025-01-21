@@ -2,6 +2,13 @@ import React, {useState, useRef} from 'react';
 import {View, StyleSheet, Text, TouchableOpacity, Image} from 'react-native';
 import {TextInput, Button, Surface} from 'react-native-paper';
 import {Picker} from '@react-native-picker/picker';
+import Auth0 from 'react-native-auth0';
+
+// Initialize Auth0
+const auth0 = new Auth0({
+  domain: 'dev-7qhfwc75b7ce1ohr.us.auth0.com',
+  clientId: 'YOUR_CLIENT_ID' // Replace with your client ID
+});
 
 const LoginScreen = ({ navigation }) => {
   const [tab, setTab] = useState('phone');
@@ -9,6 +16,7 @@ const LoginScreen = ({ navigation }) => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
   const pickerRef = useRef();
 
   const countryData = [
@@ -23,6 +31,49 @@ const LoginScreen = ({ navigation }) => {
       flag: require('../../assets/united-states.png'),
     },
   ];
+
+  // Auth0 login with email/password
+  const handleEmailLogin = async () => {
+    try {
+      setLoading(true);
+      const credentials = await auth0.auth.passwordRealm({
+        username: email,
+        password: password,
+        realm: 'Username-Password-Authentication',
+        scope: 'openid profile email'
+      });
+      
+      // Get user profile
+      const userInfo = await auth0.auth.userInfo({ token: credentials.accessToken });
+      
+      // Handle successful login
+      navigation.navigate('Home', { user: userInfo });
+    } catch (error) {
+      console.log(error);
+      alert('Login failed: ' + error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Auth0 Google login
+  const handleGoogleLogin = async () => {
+    try {
+      setLoading(true);
+      const credentials = await auth0.webAuth.authorize({
+        scope: 'openid profile email',
+        connection: 'google-oauth2'
+      });
+      
+      const userInfo = await auth0.auth.userInfo({ token: credentials.accessToken });
+      navigation.navigate('Home', { user: userInfo });
+    } catch (error) {
+      console.log(error);
+      alert('Google login failed: ' + error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleRequestOtp = () => {
     if (phoneNumber.length === 10) {
@@ -98,7 +149,8 @@ const LoginScreen = ({ navigation }) => {
             mode="contained"
             onPress={handleRequestOtp}
             contentStyle={styles.buttonContent}
-            style={styles.button}>
+            style={styles.button}
+            loading={loading}>
             Request OTP
           </Button>
         </View>
@@ -114,6 +166,8 @@ const LoginScreen = ({ navigation }) => {
               mode="flat"
               style={styles.input}
               keyboardType="email-address"
+              value={email}
+              onChangeText={setEmail}
             />
           </View>
           <View style={styles.inputWrapper}>
@@ -126,13 +180,16 @@ const LoginScreen = ({ navigation }) => {
               mode="flat"
               secureTextEntry
               style={styles.input}
+              value={password}
+              onChangeText={setPassword}
             />
           </View>
           <Button
             mode="contained"
-            onPress={() => {}}
+            onPress={handleEmailLogin}
             contentStyle={styles.buttonContent}
             style={[styles.button, { marginTop: 16 }]}
+            loading={loading}
           >
             Login
           </Button>
@@ -145,7 +202,7 @@ const LoginScreen = ({ navigation }) => {
         <View style={styles.line} />
       </View>
 
-      <TouchableOpacity style={styles.googleButton}>
+      <TouchableOpacity style={styles.googleButton} onPress={handleGoogleLogin}>
         <Image
           source={{
             uri: 'https://cdn1.iconfinder.com/data/icons/google-s-logo/150/Google_Icons-09-1024.png',
@@ -164,7 +221,6 @@ const LoginScreen = ({ navigation }) => {
     </View>
   );
 };
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
