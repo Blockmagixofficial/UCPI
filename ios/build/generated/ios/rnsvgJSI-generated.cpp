@@ -14,53 +14,53 @@ namespace facebook::react {
 static jsi::Value __hostFunction_NativeSvgRenderableModuleCxxSpecJSI_isPointInFill(jsi::Runtime &rt, TurboModule &turboModule, const jsi::Value* args, size_t count) {
   return static_cast<NativeSvgRenderableModuleCxxSpecJSI *>(&turboModule)->isPointInFill(
     rt,
-    count <= 0 || args[0].isNull() || args[0].isUndefined() ? std::nullopt : std::make_optional(args[0].asNumber()),
-    count <= 1 || args[1].isUndefined() ? std::nullopt : std::make_optional(args[1].asObject(rt))
+    args[0].isNull() || args[0].isUndefined() ? std::nullopt : std::make_optional(args[0].asNumber()),
+    count <= 1 || args[1].isNull() || args[1].isUndefined() ? std::nullopt : std::make_optional(args[1].asObject(rt))
   );
 }
 static jsi::Value __hostFunction_NativeSvgRenderableModuleCxxSpecJSI_isPointInStroke(jsi::Runtime &rt, TurboModule &turboModule, const jsi::Value* args, size_t count) {
   return static_cast<NativeSvgRenderableModuleCxxSpecJSI *>(&turboModule)->isPointInStroke(
     rt,
-    count <= 0 || args[0].isNull() || args[0].isUndefined() ? std::nullopt : std::make_optional(args[0].asNumber()),
-    count <= 1 || args[1].isUndefined() ? std::nullopt : std::make_optional(args[1].asObject(rt))
+    args[0].isNull() || args[0].isUndefined() ? std::nullopt : std::make_optional(args[0].asNumber()),
+    count <= 1 || args[1].isNull() || args[1].isUndefined() ? std::nullopt : std::make_optional(args[1].asObject(rt))
   );
 }
 static jsi::Value __hostFunction_NativeSvgRenderableModuleCxxSpecJSI_getTotalLength(jsi::Runtime &rt, TurboModule &turboModule, const jsi::Value* args, size_t count) {
   return static_cast<NativeSvgRenderableModuleCxxSpecJSI *>(&turboModule)->getTotalLength(
     rt,
-    count <= 0 || args[0].isNull() || args[0].isUndefined() ? std::nullopt : std::make_optional(args[0].asNumber())
+    args[0].isNull() || args[0].isUndefined() ? std::nullopt : std::make_optional(args[0].asNumber())
   );
 }
 static jsi::Value __hostFunction_NativeSvgRenderableModuleCxxSpecJSI_getPointAtLength(jsi::Runtime &rt, TurboModule &turboModule, const jsi::Value* args, size_t count) {
   return static_cast<NativeSvgRenderableModuleCxxSpecJSI *>(&turboModule)->getPointAtLength(
     rt,
-    count <= 0 || args[0].isNull() || args[0].isUndefined() ? std::nullopt : std::make_optional(args[0].asNumber()),
-    count <= 1 || args[1].isUndefined() ? std::nullopt : std::make_optional(args[1].asObject(rt))
+    args[0].isNull() || args[0].isUndefined() ? std::nullopt : std::make_optional(args[0].asNumber()),
+    count <= 1 || args[1].isNull() || args[1].isUndefined() ? std::nullopt : std::make_optional(args[1].asObject(rt))
   );
 }
 static jsi::Value __hostFunction_NativeSvgRenderableModuleCxxSpecJSI_getBBox(jsi::Runtime &rt, TurboModule &turboModule, const jsi::Value* args, size_t count) {
   return static_cast<NativeSvgRenderableModuleCxxSpecJSI *>(&turboModule)->getBBox(
     rt,
-    count <= 0 || args[0].isNull() || args[0].isUndefined() ? std::nullopt : std::make_optional(args[0].asNumber()),
-    count <= 1 || args[1].isUndefined() ? std::nullopt : std::make_optional(args[1].asObject(rt))
+    args[0].isNull() || args[0].isUndefined() ? std::nullopt : std::make_optional(args[0].asNumber()),
+    count <= 1 || args[1].isNull() || args[1].isUndefined() ? std::nullopt : std::make_optional(args[1].asObject(rt))
   );
 }
 static jsi::Value __hostFunction_NativeSvgRenderableModuleCxxSpecJSI_getCTM(jsi::Runtime &rt, TurboModule &turboModule, const jsi::Value* args, size_t count) {
   return static_cast<NativeSvgRenderableModuleCxxSpecJSI *>(&turboModule)->getCTM(
     rt,
-    count <= 0 || args[0].isNull() || args[0].isUndefined() ? std::nullopt : std::make_optional(args[0].asNumber())
+    args[0].isNull() || args[0].isUndefined() ? std::nullopt : std::make_optional(args[0].asNumber())
   );
 }
 static jsi::Value __hostFunction_NativeSvgRenderableModuleCxxSpecJSI_getScreenCTM(jsi::Runtime &rt, TurboModule &turboModule, const jsi::Value* args, size_t count) {
   return static_cast<NativeSvgRenderableModuleCxxSpecJSI *>(&turboModule)->getScreenCTM(
     rt,
-    count <= 0 || args[0].isNull() || args[0].isUndefined() ? std::nullopt : std::make_optional(args[0].asNumber())
+    args[0].isNull() || args[0].isUndefined() ? std::nullopt : std::make_optional(args[0].asNumber())
   );
 }
 static jsi::Value __hostFunction_NativeSvgRenderableModuleCxxSpecJSI_getRawResource(jsi::Runtime &rt, TurboModule &turboModule, const jsi::Value* args, size_t count) {
   return static_cast<NativeSvgRenderableModuleCxxSpecJSI *>(&turboModule)->getRawResource(
     rt,
-    count <= 0 ? throw jsi::JSError(rt, "Expected argument in position 0 to be passed") : args[0].asString(rt)
+    args[0].asString(rt)
   );
 }
 
@@ -78,9 +78,9 @@ NativeSvgRenderableModuleCxxSpecJSI::NativeSvgRenderableModuleCxxSpecJSI(std::sh
 static jsi::Value __hostFunction_NativeSvgViewModuleCxxSpecJSI_toDataURL(jsi::Runtime &rt, TurboModule &turboModule, const jsi::Value* args, size_t count) {
   static_cast<NativeSvgViewModuleCxxSpecJSI *>(&turboModule)->toDataURL(
     rt,
-    count <= 0 || args[0].isNull() || args[0].isUndefined() ? std::nullopt : std::make_optional(args[0].asNumber()),
-    count <= 1 || args[1].isUndefined() ? std::nullopt : std::make_optional(args[1].asObject(rt)),
-    count <= 2 || args[2].isUndefined() ? std::nullopt : std::make_optional(args[2].asObject(rt).asFunction(rt))
+    args[0].isNull() || args[0].isUndefined() ? std::nullopt : std::make_optional(args[0].asNumber()),
+    count <= 1 || args[1].isNull() || args[1].isUndefined() ? std::nullopt : std::make_optional(args[1].asObject(rt)),
+    count <= 2 || args[2].isNull() || args[2].isUndefined() ? std::nullopt : std::make_optional(args[2].asObject(rt).asFunction(rt))
   );
   return jsi::Value::undefined();
 }

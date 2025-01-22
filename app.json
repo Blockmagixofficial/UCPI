@@ -12,7 +12,8 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.ashwini0407.cfi"
     },
     "android": {
       "adaptiveIcon": {
@@ -34,6 +35,14 @@
     },
     "updates": {
       "url": "https://u.expo.dev/ed258aa1-77a5-4dec-821e-323dab40eb19"
-    }
+    },
+    "plugins": [
+      [
+        "react-native-auth0",
+        {
+          "domain": "dev-7qhfwc75b7ce1ohr.us.auth0.com"
+        }
+      ]
+    ]
   }
 }

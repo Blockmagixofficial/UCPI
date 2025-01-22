@@ -19,12 +19,112 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>BVLinearGradient.xcscheme</key>
+		<key>DoubleConversion.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>DoubleConversion.xcscheme</key>
+		<key>EASClient.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>EXBarCodeScanner.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>EXConstants-EXConstants.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>EXConstants-ExpoConstants_privacy.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>EXConstants.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>EXImageLoader.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>EXJSONUtils.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>EXManifests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>EXStructuredHeaders.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>EXUpdates-EXUpdates.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>EXUpdates.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>EXUpdatesInterface.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Expo.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>ExpoAsset.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>ExpoFileSystem-ExpoFileSystem_privacy.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>ExpoFileSystem.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>ExpoFont.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>ExpoKeepAwake.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>ExpoLinearGradient.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>ExpoModulesCore.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>ExpoSharing.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -39,17 +139,7 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-MyReactNativeApp-MyReactNativeAppTests.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Pods-MyReactNativeApp.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>RCT-Folly-RCT-Folly_privacy.xcscheme</key>
+		<key>Pods-CFI.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -74,17 +164,7 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>RNCAsyncStorage-RNCAsyncStorage_resources.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>RNCAsyncStorage.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>RNCPicker.xcscheme</key>
+		<key>RNDateTimePicker.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -94,22 +174,7 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>RNReanimated.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>RNSVG-RNSVGFilters.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>RNSVG.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>RNScreens.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -119,7 +184,22 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>React-Core-React-Core_privacy.xcscheme</key>
+		<key>ReachabilitySwift-ReachabilitySwift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>ReachabilitySwift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>React-Codegen.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>React-Core-RCTI18nStrings.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -135,11 +215,6 @@
 			<false/>
 		</dict>
 		<key>React-Fabric.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>React-FabricComponents.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -229,17 +304,7 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>React-RuntimeHermes.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>React-callinvoker.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>React-cxxreact-React-cxxreact_privacy.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -254,22 +319,7 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>React-defaultsnativemodule.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>React-domnativemodule.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>React-featureflags.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>React-featureflagsnativemodule.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -279,12 +329,7 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>React-hermes.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>React-idlecallbacksnativemodule.xcscheme</key>
+		<key>React-jsc.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -319,27 +364,12 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>React-microtasksnativemodule.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>React-nativeconfig.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
 		<key>React-perflogger.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>React-performancetimeline.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>React-rendererconsistency.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -364,22 +394,12 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>React-timing.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>React-utils.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
 		<key>React.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>ReactCodegen.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -404,7 +424,7 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>boost-boost_privacy.xcscheme</key>
+		<key>ZXingObjC.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -419,27 +439,22 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>glog-glog_privacy.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>glog.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>hermes-engine.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>react-native-randombytes.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>react-native-safe-area-context.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>react-native-webview.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>sqlite3.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>

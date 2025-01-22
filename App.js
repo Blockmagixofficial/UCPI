@@ -29,7 +29,7 @@ import OTPEnter from "./src/screens/OTP";
 import QRCodeScannerScreen from "./src/screens/ScanQrCodeScreen";
 import PayScheduled from "./src/screens/PayScheduled";
 import ProfileScreen from "./src/screens/ProfileScreen";
-
+import {useAuth0, Auth0Provider} from 'react-native-auth0';
 // Navigation Setup
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -190,6 +190,7 @@ export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   return (
+    <Auth0Provider domain={"dev-7qhfwc75b7ce1ohr.us.auth0.com"} clientId={"yUtlnop5xegOUSXYNdf7H9Rj4bRizn9l"} authorizationEndpoint="https://dev-7qhfwc75b7ce1ohr.us.auth0.com/authorize">
     <NavigationContainer>
       {isLoggedIn ? (
         <RootStack setIsLoggedIn={setIsLoggedIn} />
@@ -197,6 +198,7 @@ export default function App() {
         <AuthStack setIsLoggedIn={setIsLoggedIn} />
       )}
     </NavigationContainer>
+    </Auth0Provider>
   );
 }
 

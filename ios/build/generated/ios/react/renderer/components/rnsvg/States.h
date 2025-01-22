@@ -10,6 +10,8 @@
 
 #ifdef ANDROID
 #include <folly/dynamic.h>
+#include <react/renderer/mapbuffer/MapBuffer.h>
+#include <react/renderer/mapbuffer/MapBufferBuilder.h>
 #endif
 
 namespace facebook::react {
@@ -23,6 +25,9 @@ public:
   folly::dynamic getDynamic() const {
     return {};
   };
+  MapBuffer getMapBuffer() const {
+    return MapBufferBuilder::EMPTY();
+  };
 #endif
 };
 
@@ -34,6 +39,9 @@ public:
   RNSVGCircleState(RNSVGCircleState const &previousState, folly::dynamic data){};
   folly::dynamic getDynamic() const {
     return {};
+  };
+  MapBuffer getMapBuffer() const {
+    return MapBufferBuilder::EMPTY();
   };
 #endif
 };
@@ -47,6 +55,9 @@ public:
   folly::dynamic getDynamic() const {
     return {};
   };
+  MapBuffer getMapBuffer() const {
+    return MapBufferBuilder::EMPTY();
+  };
 #endif
 };
 
@@ -58,6 +69,9 @@ public:
   RNSVGDefsState(RNSVGDefsState const &previousState, folly::dynamic data){};
   folly::dynamic getDynamic() const {
     return {};
+  };
+  MapBuffer getMapBuffer() const {
+    return MapBufferBuilder::EMPTY();
   };
 #endif
 };
@@ -71,101 +85,8 @@ public:
   folly::dynamic getDynamic() const {
     return {};
   };
-#endif
-};
-
-class RNSVGFeBlendState {
-public:
-  RNSVGFeBlendState() = default;
-
-#ifdef ANDROID
-  RNSVGFeBlendState(RNSVGFeBlendState const &previousState, folly::dynamic data){};
-  folly::dynamic getDynamic() const {
-    return {};
-  };
-#endif
-};
-
-class RNSVGFeColorMatrixState {
-public:
-  RNSVGFeColorMatrixState() = default;
-
-#ifdef ANDROID
-  RNSVGFeColorMatrixState(RNSVGFeColorMatrixState const &previousState, folly::dynamic data){};
-  folly::dynamic getDynamic() const {
-    return {};
-  };
-#endif
-};
-
-class RNSVGFeCompositeState {
-public:
-  RNSVGFeCompositeState() = default;
-
-#ifdef ANDROID
-  RNSVGFeCompositeState(RNSVGFeCompositeState const &previousState, folly::dynamic data){};
-  folly::dynamic getDynamic() const {
-    return {};
-  };
-#endif
-};
-
-class RNSVGFeFloodState {
-public:
-  RNSVGFeFloodState() = default;
-
-#ifdef ANDROID
-  RNSVGFeFloodState(RNSVGFeFloodState const &previousState, folly::dynamic data){};
-  folly::dynamic getDynamic() const {
-    return {};
-  };
-#endif
-};
-
-class RNSVGFeGaussianBlurState {
-public:
-  RNSVGFeGaussianBlurState() = default;
-
-#ifdef ANDROID
-  RNSVGFeGaussianBlurState(RNSVGFeGaussianBlurState const &previousState, folly::dynamic data){};
-  folly::dynamic getDynamic() const {
-    return {};
-  };
-#endif
-};
-
-class RNSVGFeMergeState {
-public:
-  RNSVGFeMergeState() = default;
-
-#ifdef ANDROID
-  RNSVGFeMergeState(RNSVGFeMergeState const &previousState, folly::dynamic data){};
-  folly::dynamic getDynamic() const {
-    return {};
-  };
-#endif
-};
-
-class RNSVGFeOffsetState {
-public:
-  RNSVGFeOffsetState() = default;
-
-#ifdef ANDROID
-  RNSVGFeOffsetState(RNSVGFeOffsetState const &previousState, folly::dynamic data){};
-  folly::dynamic getDynamic() const {
-    return {};
-  };
-#endif
-};
-
-class RNSVGFilterState {
-public:
-  RNSVGFilterState() = default;
-
-#ifdef ANDROID
-  RNSVGFilterState(RNSVGFilterState const &previousState, folly::dynamic data){};
-  folly::dynamic getDynamic() const {
-    return {};
+  MapBuffer getMapBuffer() const {
+    return MapBufferBuilder::EMPTY();
   };
 #endif
 };
@@ -179,6 +100,9 @@ public:
   folly::dynamic getDynamic() const {
     return {};
   };
+  MapBuffer getMapBuffer() const {
+    return MapBufferBuilder::EMPTY();
+  };
 #endif
 };
 
@@ -190,6 +114,9 @@ public:
   RNSVGGroupState(RNSVGGroupState const &previousState, folly::dynamic data){};
   folly::dynamic getDynamic() const {
     return {};
+  };
+  MapBuffer getMapBuffer() const {
+    return MapBufferBuilder::EMPTY();
   };
 #endif
 };
@@ -203,6 +130,9 @@ public:
   folly::dynamic getDynamic() const {
     return {};
   };
+  MapBuffer getMapBuffer() const {
+    return MapBufferBuilder::EMPTY();
+  };
 #endif
 };
 
@@ -214,6 +144,9 @@ public:
   RNSVGLinearGradientState(RNSVGLinearGradientState const &previousState, folly::dynamic data){};
   folly::dynamic getDynamic() const {
     return {};
+  };
+  MapBuffer getMapBuffer() const {
+    return MapBufferBuilder::EMPTY();
   };
 #endif
 };
@@ -227,6 +160,9 @@ public:
   folly::dynamic getDynamic() const {
     return {};
   };
+  MapBuffer getMapBuffer() const {
+    return MapBufferBuilder::EMPTY();
+  };
 #endif
 };
 
@@ -238,6 +174,9 @@ public:
   RNSVGMarkerState(RNSVGMarkerState const &previousState, folly::dynamic data){};
   folly::dynamic getDynamic() const {
     return {};
+  };
+  MapBuffer getMapBuffer() const {
+    return MapBufferBuilder::EMPTY();
   };
 #endif
 };
@@ -251,6 +190,9 @@ public:
   folly::dynamic getDynamic() const {
     return {};
   };
+  MapBuffer getMapBuffer() const {
+    return MapBufferBuilder::EMPTY();
+  };
 #endif
 };
 
@@ -262,6 +204,9 @@ public:
   RNSVGPathState(RNSVGPathState const &previousState, folly::dynamic data){};
   folly::dynamic getDynamic() const {
     return {};
+  };
+  MapBuffer getMapBuffer() const {
+    return MapBufferBuilder::EMPTY();
   };
 #endif
 };
@@ -275,6 +220,9 @@ public:
   folly::dynamic getDynamic() const {
     return {};
   };
+  MapBuffer getMapBuffer() const {
+    return MapBufferBuilder::EMPTY();
+  };
 #endif
 };
 
@@ -286,6 +234,9 @@ public:
   RNSVGRadialGradientState(RNSVGRadialGradientState const &previousState, folly::dynamic data){};
   folly::dynamic getDynamic() const {
     return {};
+  };
+  MapBuffer getMapBuffer() const {
+    return MapBufferBuilder::EMPTY();
   };
 #endif
 };
@@ -299,6 +250,9 @@ public:
   folly::dynamic getDynamic() const {
     return {};
   };
+  MapBuffer getMapBuffer() const {
+    return MapBufferBuilder::EMPTY();
+  };
 #endif
 };
 
@@ -310,6 +264,9 @@ public:
   RNSVGSymbolState(RNSVGSymbolState const &previousState, folly::dynamic data){};
   folly::dynamic getDynamic() const {
     return {};
+  };
+  MapBuffer getMapBuffer() const {
+    return MapBufferBuilder::EMPTY();
   };
 #endif
 };
@@ -323,6 +280,9 @@ public:
   folly::dynamic getDynamic() const {
     return {};
   };
+  MapBuffer getMapBuffer() const {
+    return MapBufferBuilder::EMPTY();
+  };
 #endif
 };
 
@@ -334,6 +294,9 @@ public:
   RNSVGTextPathState(RNSVGTextPathState const &previousState, folly::dynamic data){};
   folly::dynamic getDynamic() const {
     return {};
+  };
+  MapBuffer getMapBuffer() const {
+    return MapBufferBuilder::EMPTY();
   };
 #endif
 };
@@ -347,6 +310,9 @@ public:
   folly::dynamic getDynamic() const {
     return {};
   };
+  MapBuffer getMapBuffer() const {
+    return MapBufferBuilder::EMPTY();
+  };
 #endif
 };
 
@@ -358,6 +324,9 @@ public:
   RNSVGUseState(RNSVGUseState const &previousState, folly::dynamic data){};
   folly::dynamic getDynamic() const {
     return {};
+  };
+  MapBuffer getMapBuffer() const {
+    return MapBufferBuilder::EMPTY();
   };
 #endif
 };

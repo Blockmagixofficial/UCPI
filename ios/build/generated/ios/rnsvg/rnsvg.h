@@ -14,11 +14,6 @@
 #ifndef __cplusplus
 #error This file must be compiled as Obj-C++. If you are importing it, you must change your file extension to .mm.
 #endif
-
-// Avoid multiple includes of rnsvg symbols
-#ifndef rnsvg_H
-#define rnsvg_H
-
 #import <Foundation/Foundation.h>
 #import <RCTRequired/RCTRequired.h>
 #import <RCTTypeSafety/RCTConvertHelpers.h>
@@ -49,16 +44,6 @@
                 reject:(RCTPromiseRejectBlock)reject;
 
 @end
-
-@interface NativeSvgRenderableModuleSpecBase : NSObject {
-@protected
-facebook::react::EventEmitterCallback _eventEmitterCallback;
-}
-- (void)setEventEmitterCallback:(EventEmitterCallbackWrapper *)eventEmitterCallbackWrapper;
-
-
-@end
-
 namespace facebook::react {
   /**
    * ObjC++ class for module 'NativeSvgRenderableModule'
@@ -76,16 +61,6 @@ namespace facebook::react {
          callback:(RCTResponseSenderBlock)callback;
 
 @end
-
-@interface NativeSvgViewModuleSpecBase : NSObject {
-@protected
-facebook::react::EventEmitterCallback _eventEmitterCallback;
-}
-- (void)setEventEmitterCallback:(EventEmitterCallbackWrapper *)eventEmitterCallbackWrapper;
-
-
-@end
-
 namespace facebook::react {
   /**
    * ObjC++ class for module 'NativeSvgViewModule'
@@ -97,4 +72,3 @@ namespace facebook::react {
 } // namespace facebook::react
 
 
-#endif // rnsvg_H

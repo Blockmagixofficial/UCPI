@@ -1,14 +1,15 @@
 import React, {useState, useRef} from 'react';
 import {View, StyleSheet, Text, TouchableOpacity, Image} from 'react-native';
 import {TextInput, Button, Surface} from 'react-native-paper';
-
+import {useAuth0} from 'react-native-auth0';
 const LoginScreen = ({ navigation }) => {
   const [tab, setTab] = useState('phone');
   const [selectedCountry, setSelectedCountry] = useState('+91');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
+  // const {authorize} = useAuth0();
+  // console.log(authorize(),":::::");
   const countryData = [
     {
       label: 'India (+91)',
